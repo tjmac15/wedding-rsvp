@@ -9,7 +9,7 @@ import Nav from "./components/Nav";
 import MusicToggle from "./components/MusicToggle";
 import Gallery from "./components/Gallery";
 import AddToCalendar from "./components/AddToCalendar";
-import Parallax from "./components/Parallax";
+import { OliveBranch, Sprig, Divider, WaxSeal } from "./components/Ornaments";
 import Botanical from "./components/Botanical";
 import Marquee from "./components/Marquee";
 
@@ -18,20 +18,18 @@ function Title({ eyebrow, title }: { eyebrow: string; title: string }) {
     <div className="section-title">
       <p className="eyebrow">{eyebrow}</p>
       <h2>{title}</h2>
-      <Flourish />
+      <Divider />
     </div>
   );
 }
 
-function Flourish() {
-  return (
-    <svg className="flourish" viewBox="0 0 200 20" aria-hidden>
-      <path d="M0 10 H80 M120 10 H200" stroke="currentColor" strokeWidth="0.8" />
-      <path d="M100 2 C104 8 104 12 100 18 C96 12 96 8 100 2Z" fill="currentColor" />
-      <circle cx="88" cy="10" r="1.6" fill="currentColor" />
-      <circle cx="112" cy="10" r="1.6" fill="currentColor" />
-    </svg>
-  );
+const ONES = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+  "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+const TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+function yearWords(y: number) {
+  const r = y % 100;
+  const rest = r < 20 ? ONES[r] : `${TENS[Math.floor(r / 10)]}${r % 10 ? " " + ONES[r % 10] : ""}`;
+  return `two thousand${rest ? " " + rest : ""}`;
 }
 
 export default function Home() {
@@ -41,6 +39,14 @@ export default function Home() {
   const month = d.toLocaleString("en-US", { month: "long", timeZone: "Asia/Manila" });
   const day = d.toLocaleString("en-US", { day: "numeric", timeZone: "Asia/Manila" });
   const weekday = d.toLocaleString("en-US", { weekday: "long", timeZone: "Asia/Manila" });
+  const dayNum = d.toLocaleString("en-US", { day: "2-digit", timeZone: "Asia/Manila" });
+  const year = Number(d.toLocaleString("en-US", { year: "numeric", timeZone: "Asia/Manila" }));
+  const time = d.toLocaleString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "Asia/Manila" }).replace(/\s?[AP]M/, "");
+  const hour24 = Number(d.toLocaleString("en-US", { hour: "numeric", hourCycle: "h23", timeZone: "Asia/Manila" }));
+  const partOfDay = hour24 < 12 ? "morning" : hour24 < 17 ? "afternoon" : "evening";
+  const initialA = w.groomShort.charAt(0);
+  const initialB = w.brideShort.charAt(0);
+  const strip = w.coverPhoto ? `/photos/${w.coverPhoto}` : photos.hero ?? photos.gallery[0] ?? null;
   const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(w.venue.mapQuery)}&output=embed`;
   const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(w.venue.mapQuery)}`;
 
@@ -51,37 +57,51 @@ export default function Home() {
       <Nav monogram={w.monogram} />
       {music && <MusicToggle src={w.musicSrc} />}
 
-      {/* ── HERO ─────────────────────────────── */}
-      <header className={`hero ${photos.hero ? "has-photo" : ""}`} id="top">
-        <Parallax className="hero-bg" speed={0.3}>
-          {photos.hero ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={photos.hero} alt={`${w.groomShort} and ${w.brideShort}`} fetchPriority="high" />
-          ) : (
-            <div className="hero-fallback" />
-          )}
-        </Parallax>
-        <div className="hero-veil" />
-        <Botanical className="bt-tl" />
-        <Botanical className="bt-br" />
-        <div className="hero-frame" aria-hidden />
+      {/* ── HERO: the invitation card ─────────── */}
+      <header className={`inv ${strip ? "has-strip" : ""}`} id="top">
+        <div className="inv-corner inv-corner-tl" aria-hidden />
+        <div className="inv-corner inv-corner-br" aria-hidden />
 
-        <div className="hero-inner">
-          <p className="eyebrow hero-line l1">Together with their families</p>
-          <h1 className="names">
-            <span className="n n1 script">{w.groomShort}</span>
-            <span className="amp">&amp;</span>
-            <span className="n n2 script">{w.brideShort}</span>
-          </h1>
-          <p className="fullnames hero-line l2">{w.groom} &nbsp;·&nbsp; {w.bride}</p>
-          <p className="eyebrow hero-line l3" style={{ marginTop: 28 }}>are getting married</p>
-          <div className="hero-date hero-line l4">
-            <span>{weekday}</span>
-            <strong>{month} {day}</strong>
-            <span>2026</span>
+        <div className="inv-stage">
+          {strip && (
+            <div className="inv-strip">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={strip} alt={`${w.groomShort} and ${w.brideShort}`} fetchPriority="high" style={{ objectPosition: w.coverFocus }} />
+            </div>
+          )}
+
+          <div className="inv-card">
+            <WaxSeal a={initialA} b={initialB} className="inv-wax" />
+            <div className="inv-mono hero-line l1">
+              <Sprig />
+              <p><span>{initialA}</span><i /><span>{initialB}</span></p>
+            </div>
+
+            <p className="inv-small hero-line l2">Together with their families</p>
+            <h1 className="inv-names">
+              <span className="hero-line l2">{w.groom}</span>
+              <span className="inv-and hero-line l3"><i />and<i /></span>
+              <span className="hero-line l3">{w.bride}</span>
+            </h1>
+            <p className="inv-small hero-line l4">
+              Request the honour of your presence<br />at their wedding celebration
+            </p>
+
+            <div className="inv-date hero-line l4">
+              <span>{weekday}</span>
+              <strong>{dayNum}</strong>
+              <span>{month}</span>
+            </div>
+            <p className="inv-year hero-line l5">{yearWords(year)}</p>
+            <p className="inv-script hero-line l5">at {time} in the {partOfDay}</p>
+            <p className="inv-venue hero-line l5">{w.venue.name} &nbsp;·&nbsp; Santa Rosa, Laguna</p>
+
+            <div className="hero-line l6"><Countdown dateISO={w.dateISO} /></div>
+            <a className="btn hero-line l6" href="#rsvp">Kindly RSVP</a>
+            <Divider className="inv-foot hero-line l6" />
           </div>
-          <div className="hero-line l5"><Countdown dateISO={w.dateISO} /></div>
-          <a className="btn btn-glow hero-line l6" href="#rsvp">Kindly RSVP</a>
+
+          <OliveBranch className="inv-olive" />
         </div>
         <a className="scroll-cue" href="#story" aria-label="Scroll down"><span /></a>
       </header>
@@ -276,7 +296,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <Flourish />
+        <Divider />
         <p className="script foot-names">{w.groomShort} &amp; {w.brideShort}</p>
         <p className="eyebrow">{w.dateLabel} · {w.venue.name}</p>
       </footer>

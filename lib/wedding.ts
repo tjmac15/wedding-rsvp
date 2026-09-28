@@ -9,6 +9,8 @@ export const wedding = {
   groomShort: "TJ",
   brideShort: "Mariel",
   monogram: "T&M",
+  coverPhoto: "15.JPG",
+ coverFocus: "center 70%",
   
 
   // Wedding day — ISO with Philippine time offset (+08:00)
