@@ -8,7 +8,7 @@ export const wedding = {
   bride: "France Marriela Rendon",
   groomShort: "TJ",
   brideShort: "Mariel",
-  monogram: "T&Ms",
+  monogram: "T&M",
   
 
   // Wedding day — ISO with Philippine time offset (+08:00)
