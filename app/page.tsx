@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { wedding as w } from "@/lib/wedding";
 import { getPhotos, hasMusic } from "@/lib/photos";
 import Countdown from "./components/Countdown";
@@ -9,7 +10,7 @@ import Nav from "./components/Nav";
 import MusicToggle from "./components/MusicToggle";
 import Gallery from "./components/Gallery";
 import AddToCalendar from "./components/AddToCalendar";
-import { OliveBranch, Sprig, Divider, WaxSeal } from "./components/Ornaments";
+import { OliveBranch, Sprig, Divider, LeafCluster } from "./components/Ornaments";
 import Botanical from "./components/Botanical";
 import Marquee from "./components/Marquee";
 
@@ -65,13 +66,16 @@ export default function Home() {
         <div className="inv-stage">
           {strip && (
             <div className="inv-strip">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={strip} alt={`${w.groomShort} and ${w.brideShort}`} fetchPriority="high" style={{ objectPosition: w.coverFocus }} />
+              <Image
+                src={strip} alt={`${w.groomShort} and ${w.brideShort}`} fill priority quality={78}
+                sizes="(max-width: 820px) 90vw, 480px"
+                style={{ objectFit: "cover", objectPosition: w.coverFocus }}
+              />
             </div>
           )}
 
           <div className="inv-card">
-            <WaxSeal a={initialA} b={initialB} className="inv-wax" />
+            <LeafCluster className="inv-leaves" />
             <div className="inv-mono hero-line l1">
               <Sprig />
               <p><span>{initialA}</span><i /><span>{initialB}</span></p>
@@ -92,7 +96,7 @@ export default function Home() {
               <strong>{dayNum}</strong>
               <span>{month}</span>
             </div>
-            <p className="inv-year hero-line l5">{yearWords(year)}</p>
+            <p className="inv-year hero-line l5">{year}</p>
             <p className="inv-script hero-line l5">at {time} in the {partOfDay}</p>
             <p className="inv-venue hero-line l5">{w.venue.name} &nbsp;·&nbsp; Santa Rosa, Laguna</p>
 

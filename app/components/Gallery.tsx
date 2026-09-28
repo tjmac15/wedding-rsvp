@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 /** Masonry gallery with a full-screen lightbox (arrows, Esc, swipe). */
 export default function Gallery({ photos }: { photos: string[] }) {
@@ -45,8 +46,11 @@ export default function Gallery({ photos }: { photos: string[] }) {
       <div className="masonry">
         {photos.map((src, i) => (
           <button key={src} className="m-item" onClick={() => setIdx(i)} aria-label={`Open photo ${i + 1}`}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={src} alt="" loading="lazy" decoding="async" />
+            <Image
+              src={src} alt="" width={1400} height={2010} quality={72}
+              sizes="(max-width: 600px) 50vw, (max-width: 1100px) 33vw, 380px"
+              style={{ width: "100%", height: "auto" }}
+            />
           </button>
         ))}
       </div>
@@ -63,8 +67,11 @@ export default function Gallery({ photos }: { photos: string[] }) {
             touchX.current = null;
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img key={photos[idx]} src={photos[idx]} alt="" onClick={(e) => e.stopPropagation()} />
+          <Image
+            key={photos[idx]} src={photos[idx]} alt="" width={1400} height={2010} quality={80} sizes="92vw"
+            style={{ width: "auto", height: "auto", maxWidth: "92vw", maxHeight: "86vh" }}
+            onClick={(e) => e.stopPropagation()}
+          />
           <button className="lb-btn lb-prev" onClick={(e) => { e.stopPropagation(); step(-1); }} aria-label="Previous">‹</button>
           <button className="lb-btn lb-next" onClick={(e) => { e.stopPropagation(); step(1); }} aria-label="Next">›</button>
           <button className="lb-btn lb-close" onClick={close} aria-label="Close">×</button>

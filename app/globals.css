@@ -1072,3 +1072,261 @@ body {
 
 /* two-column gallery on phones */
 @media (max-width: 600px) { .masonry { columns: 2; column-gap: 10px; } .m-item { margin-bottom: 10px; padding: 5px; } }
+/* ═════════════════════════════════════════════════════════════
+   SIZE & FIT — smaller overall, card fits the photo, bigger venue photo
+   ═════════════════════════════════════════════════════════════ */
+body { font-size: 17px; }
+section.block { padding: clamp(60px, 8vw, 96px) 20px; }
+.section-title { margin-bottom: 38px; }
+
+/* everything a little smaller on laptops/desktops */
+@media (min-width: 1024px) {
+  body { zoom: 0.85; }
+  .inv { min-height: calc(100svh / 0.85); }
+}
+
+/* ── Hero: card is the same height as the photo ── */
+.inv { padding: 44px 20px 70px; }
+.inv-stage { --h: min(92svh, 720px); }
+.inv-strip { height: var(--h); }
+.inv-card {
+  width: min(100%, 480px);
+  padding: 60px 34px 28px;
+  border-radius: 240px 240px 4px 4px;
+}
+.inv-card::before { border-radius: 228px 228px 2px 2px; }
+.inv.has-strip .inv-card { height: var(--h); display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.inv.has-strip .inv-card > * { max-width: 100%; }
+.inv-mono { margin-bottom: 10px; }
+.inv-mono .sprig { width: 100px; }
+.inv-mono p { font-size: 21px; gap: 12px; }
+.inv-mono i { height: 22px; }
+.inv-small { font-size: 11px; letter-spacing: 0.26em; line-height: 1.8; }
+.inv-names { margin: 10px 0 12px; }
+.inv-names > span:not(.inv-and) { font-size: clamp(22px, 2.5vw, 31px); letter-spacing: 0.14em; padding-left: 0.14em; }
+.inv-and { font-size: 26px; margin: 2px 0; }
+.inv-and i { width: 36px; }
+.inv-date { margin: 14px 0 6px; }
+.inv-date span { font-size: 11px; padding: 7px 12px; min-width: 94px; }
+.inv-date strong { font-size: 44px; padding: 0 16px; }
+.inv-year { font-size: 10.5px; }
+.inv-script { font-size: 24px; margin: 6px 0 4px; }
+.inv-venue { font-size: 11px; letter-spacing: 0.26em; }
+/* countdown as one quiet line instead of boxes */
+.inv .countdown { margin-top: 14px; gap: 18px; }
+.inv .countdown div { gap: 2px; }
+.inv .countdown strong { width: auto; height: auto; font-size: 22px; background: none; border: 0; outline: 0; }
+.inv .countdown strong::after { display: none; }
+.inv .countdown span { font-size: 9px; }
+.inv .btn { margin-top: 16px; padding: 13px 30px; font-size: 12px; }
+.inv-foot { margin-top: 14px; width: 150px; }
+.inv-wax { width: 86px; height: 86px; }
+.inv-olive { height: 60%; }
+@media (min-width: 821px) { .inv.has-strip .inv-olive { right: 40px; bottom: 2%; } }
+
+@media (max-width: 820px) {
+  .inv { padding: 0 16px 70px; }
+  .inv-strip { height: 280px; }
+  .inv-card { padding: 54px 16px 30px; border-radius: 180px 180px 4px 4px; }
+  .inv-card::before { border-radius: 168px 168px 2px 2px; }
+  .inv-names > span:not(.inv-and) { font-size: 22px; }
+  .inv-date strong { font-size: 38px; }
+  .inv-wax { width: 68px; height: 68px; }
+  .inv-olive { height: 260px; }
+  .inv-small, .inv-venue { font-size: 10.5px; letter-spacing: 0.16em; }
+}
+
+/* ── Smaller tiles ── */
+.sched-item { padding: 40px 14px 22px; border-radius: 90px 90px 3px 3px; }
+.sched-title { font-size: 16px; }
+.sched-note { font-size: 14px; }
+.schedule { gap: 12px; margin-bottom: 40px; }
+.t-card h3 { font-size: 19px; }
+.welcome { padding: clamp(60px, 9vw, 100px) 24px; }
+.big-num { font-size: clamp(110px, 16vw, 170px); }
+.quote-text { font-size: clamp(21px, 3.4vw, 28px); }
+.marquee { padding: 16px 0; }
+.marquee span { font-size: clamp(16px, 2.4vw, 21px); }
+.date-band { padding: 56px 20px; }
+.swatch span { width: clamp(76px, 16vw, 100px); height: clamp(92px, 20vw, 120px); border-bottom-width: 36px; }
+.form { padding: clamp(24px, 4vw, 38px); }
+.field input, .field select, .field textarea { font-size: 16px; padding: 11px 14px; }
+.choice label { padding: 14px 10px; font-size: 16px; }
+.foot-names { font-size: clamp(30px, 5vw, 44px); }
+
+/* ── Venue: photo across the top, shown in full ── */
+.venue { grid-template-columns: 1fr; }
+.venue-media { min-height: 0; aspect-ratio: 3 / 2; max-height: 560px; width: 100%; }
+.venue-body { display: grid; grid-template-columns: 1.15fr 1fr; column-gap: 44px; align-items: start; padding: 36px 40px 40px; }
+.venue-body > * { grid-column: 1; }
+.venue-body .tips {
+  grid-column: 2; grid-row: 1 / span 8; align-self: center;
+  margin: 0; padding: 0 0 0 30px; border-top: 0; border-left: 1px dashed var(--line);
+}
+.venue-name { font-size: clamp(28px, 4vw, 38px); }
+@media (max-width: 800px) {
+  .venue-body { grid-template-columns: 1fr; padding: 26px 22px 30px; }
+  .venue-body .tips { grid-column: 1; grid-row: auto; margin-top: 22px; padding: 18px 0 0; border-left: 0; border-top: 1px dashed var(--line); }
+}
+
+/* ═══ COVER PHOTO AS A VINTAGE PRINT + LARGER CARD ═══ */
+.inv-strip, .inv-strip img { clip-path: none; }
+.inv-strip {
+  box-sizing: border-box; overflow: hidden;
+  border: 12px solid #f3f3ee; border-bottom-width: 44px; border-radius: 10px;
+  background: #f3f3ee;
+  outline: 1px solid #6d684a; outline-offset: 10px;
+  box-shadow: 0 30px 50px -28px rgba(4, 3, 1, 0.45), 0 2px 6px rgba(4, 3, 1, 0.08);
+  transform: rotate(-2deg);
+  animation: printIn 1.4s var(--ease) 0.2s both;
+}
+.inv-strip img {
+  inset: auto !important; top: -5% !important; left: -4% !important; width: 108% !important; height: 110% !important;
+  border-radius: 4px;
+  filter: sepia(0.45) saturate(0.75) contrast(1.04) brightness(0.98);
+}
+/* dark-green photo corners, like an old album */
+.inv-strip::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(135deg, #474b33 0 50%, transparent 50%) top left / 34px 34px no-repeat,
+    linear-gradient(225deg, #474b33 0 50%, transparent 50%) top right / 34px 34px no-repeat,
+    linear-gradient(45deg, #474b33 0 50%, transparent 50%) bottom left / 34px 34px no-repeat,
+    linear-gradient(315deg, #474b33 0 50%, transparent 50%) bottom right / 34px 34px no-repeat;
+}
+@keyframes printIn { from { opacity: 0; transform: rotate(-6deg) translateY(24px); } to { opacity: 1; transform: rotate(-2deg); } }
+
+/* bigger invitation card */
+.inv.has-strip .inv-stage { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); column-gap: 0; }
+.inv-card { width: min(100%, 540px); padding: 64px 40px 30px; }
+.inv.has-strip .inv-card { margin-left: -30px; }
+.inv-mono .sprig { width: 116px; }
+.inv-mono p { font-size: 23px; }
+.inv-small { font-size: 11.5px; }
+.inv-names > span:not(.inv-and) { font-size: clamp(24px, 2.8vw, 35px); }
+.inv-and { font-size: 29px; }
+.inv-date span { font-size: 11.5px; min-width: 104px; }
+.inv-date strong { font-size: 50px; }
+.inv-year { font-size: 11px; }
+.inv-script { font-size: 27px; }
+.inv-venue { font-size: 11.5px; }
+.inv .countdown strong { font-size: 24px; }
+.inv-wax { width: 92px; height: 92px; left: -46px; }
+
+@media (max-width: 820px) {
+  .inv.has-strip .inv-stage { grid-template-columns: 1fr; }
+  .inv-strip {
+    width: 100%; height: 300px; margin: 22px 0 0;
+    border-width: 9px 9px 30px; outline-offset: 7px; transform: rotate(-1.5deg);
+  }
+  .inv-strip::after { background-size: 24px 24px; }
+  @keyframes printIn { from { opacity: 0; transform: rotate(-4deg) translateY(16px); } to { opacity: 1; transform: rotate(-1.5deg); } }
+  .inv.has-strip .inv-card { margin: -46px 0 0; }
+  .inv-card { padding: 54px 16px 30px; }
+  .inv-names > span:not(.inv-and) { font-size: 23px; }
+  .inv-date strong { font-size: 40px; }
+  .inv-date span { min-width: 0; font-size: 10.5px; }
+  .inv-small, .inv-venue { font-size: 10.5px; }
+  .inv-script { font-size: 24px; }
+  .inv-wax { width: 70px; height: 70px; left: -6px; top: -24px; }
+}
+.inv-year { font-size: 13px; letter-spacing: 0.4em; }
+
+/* ═════════════════════════════════════════════════════════════
+   PHONE POLISH — most guests will open the invite on mobile
+   ═════════════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  section.block { padding: 56px 18px; }
+  .section-title { margin-bottom: 30px; }
+  .section-title .eyebrow { font-size: 27px; }
+  .section-title h2 { font-size: 26px; letter-spacing: 0.2em; }
+  .divider-orn { width: 150px; }
+
+  /* cover: the photo is a tilted print, the card overlaps it */
+  .inv { padding: 18px 14px 64px; }
+  .inv-strip { width: 84%; height: 340px; margin: 14px auto 0; transform: rotate(-2.5deg); }
+  @keyframes printIn { from { opacity: 0; transform: rotate(-6deg) translateY(16px); } to { opacity: 1; transform: rotate(-2.5deg); } }
+  .inv.has-strip .inv-card { margin-top: -54px; }
+  .inv-card { width: 100%; padding: 50px 14px 26px; border-radius: 170px 170px 4px 4px; }
+  .inv-card::before { inset: 9px; border-radius: 161px 161px 2px 2px; }
+  .inv-mono .sprig { width: 92px; }
+  .inv-mono p { font-size: 19px; }
+  .inv-names { margin: 8px 0 10px; }
+  .inv-names > span:not(.inv-and) { font-size: 21px; letter-spacing: 0.12em; padding-left: 0.12em; }
+  .inv-and { font-size: 24px; }
+  .inv-small, .inv-venue { font-size: 10px; letter-spacing: 0.15em; line-height: 1.8; }
+  .inv-date { margin: 12px 0 4px; }
+  .inv-date span { font-size: 10px; letter-spacing: 0.18em; padding: 6px 8px; min-width: 0; }
+  .inv-date strong { font-size: 36px; padding: 0 12px; }
+  .inv-year { font-size: 12px; }
+  .inv-script { font-size: 22px; }
+  .inv .countdown { gap: 14px; margin-top: 12px; }
+  .inv .countdown strong { font-size: 20px; }
+  .inv .btn { padding: 12px 26px; font-size: 11px; margin-top: 14px; }
+  .inv-wax { width: 60px; height: 60px; left: 2px; top: -34px; }
+  .wax span { font-size: 14px; }
+  .wax i { height: 16px; }
+  .inv-olive { height: 210px; right: -46px; bottom: -18px; }
+  .inv-corner-br { width: 58%; height: 16%; right: -22%; bottom: -4%; }
+  .inv .scroll-cue { display: none; }
+
+  /* top menu: all five links fit */
+  .nav { top: 8px; padding: 5px; gap: 0; max-width: calc(100vw - 16px); }
+  .nav-links { gap: 0; }
+  .nav-links a { font-size: 9.5px; letter-spacing: 0.1em; padding: 7px 8px; }
+
+  /* welcome */
+  .welcome { padding: 60px 20px; }
+  .big-num { font-size: 110px; }
+  .roman { font-size: 17px; }
+  .quote-text { font-size: 19px; }
+  .welcome-body { font-size: 16px; }
+
+  /* story timeline: everything left-aligned beside the line */
+  .t-item, .t-item.left, .t-item.right { text-align: left; padding: 0 0 34px 34px; }
+  .t-card h3 { font-size: 16px; }
+  .t-card p:last-child { font-size: 15px; }
+
+  /* schedule as a neat 2 × 2 grid of small arches */
+  .schedule { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sched-item { padding: 34px 8px 16px; border-radius: 80px 80px 3px 3px; }
+  .sched-time { font-size: 11px; }
+  .sched-title { font-size: 13px; letter-spacing: 0.08em; }
+  .sched-note { font-size: 12px; }
+
+  /* venue */
+  .venue-media { aspect-ratio: 4 / 3; }
+  .venue-name { font-size: 27px; }
+  .venue-desc, .venue-addr { font-size: 15px; }
+  .tips { font-size: 14px; }
+  .map-frame { height: 240px; }
+  .cal-btns .btn { padding: 12px 18px; font-size: 11px; }
+
+  /* gallery: two columns */
+  .masonry { column-count: 2; column-width: auto; column-gap: 10px; }
+  .m-item { margin-bottom: 10px; padding: 5px; }
+
+  /* dress code, gifts & notes */
+  .lead { font-size: 17px; }
+  .swatch span { width: 84px; height: 100px; border-width: 6px; border-bottom-width: 32px; }
+  .swatch em { font-size: 11px; bottom: 9px; }
+  .notes li { font-size: 14.5px; padding: 13px 16px; }
+
+  /* RSVP form */
+  .form { padding: 24px 18px; }
+  .field { margin-bottom: 16px; }
+  .field label, .legend { font-size: 11px; }
+  .choice label { font-size: 15px; padding: 12px 6px; }
+  .deadline { font-size: 15px; }
+  .foot-names { font-size: 30px; }
+}
+
+/* olive sprig over the photo corner (replaces the wax seal) */
+.inv-leaves {
+  position: absolute; z-index: 4; pointer-events: none; width: 170px; left: -120px; top: 34%;
+  transform: rotate(-28deg); filter: drop-shadow(4px 8px 6px rgba(4, 3, 1, 0.25));
+}
+@media (max-width: 820px) {
+  .inv-leaves { width: 150px; left: -18px; top: -70px; transform: rotate(-18deg); }
+}

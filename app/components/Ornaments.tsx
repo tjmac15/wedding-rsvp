@@ -124,3 +124,49 @@ export function WaxSeal({ a, b, className = "" }: { a: string; b: string } & P) 
     </div>
   );
 }
+/** Short olive sprig — leaves along a curved stem, with two olives. */
+export function LeafCluster({ className = "" }: P) {
+  const pt = (t: number) => [
+    (1 - t) ** 2 * 12 + 2 * (1 - t) * t * 80 + t * t * 208,
+    (1 - t) ** 2 * 118 + 2 * (1 - t) * t * 40 + t * t * 34,
+  ];
+  const ang = (t: number) => {
+    const [a, b] = pt(Math.max(0, t - 0.01)), [c, d] = pt(Math.min(1, t + 0.01));
+    return (Math.atan2(d - b, c - a) * 180) / Math.PI;
+  };
+  const leaves = Array.from({ length: 9 }, (_, i) => {
+    const t = 0.12 + i * 0.1;
+    const [x, y] = pt(t);
+    const side = i % 2 ? 1 : -1;
+    return { x, y, r: ang(t) + side * 42, s: 0.95 - i * 0.05, i };
+  });
+  const [tx, ty] = pt(1);
+  const [o1x, o1y] = pt(0.3), [o2x, o2y] = pt(0.55);
+  return (
+    <svg className={`leaf-cluster ${className}`} viewBox="0 0 220 140" aria-hidden>
+      <defs>
+        <linearGradient id="lcG" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#33362a" />
+          <stop offset="0.55" stopColor="#474b33" />
+          <stop offset="1" stopColor="#5c6045" />
+        </linearGradient>
+        <radialGradient id="lcO" cx="0.35" cy="0.35" r="0.7">
+          <stop offset="0" stopColor="#9c9772" />
+          <stop offset="0.6" stopColor="#6d684a" />
+          <stop offset="1" stopColor="#555137" />
+        </radialGradient>
+      </defs>
+      <path d={`M12 118 Q80 40 ${tx} ${ty}`} stroke="#6d684a" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      {leaves.map((l) => (
+        <g key={l.i} transform={`translate(${l.x} ${l.y}) rotate(${l.r}) scale(${l.s})`}>
+          <path d="M0 0 C10 -8 36 -9 54 0 C36 8 10 8 0 0Z" fill="url(#lcG)" />
+          <path d="M3 0 L50 0" stroke="#8c8866" strokeWidth="0.6" opacity="0.7" />
+        </g>
+      ))}
+      <path d={`M${o1x} ${o1y} l6 10`} stroke="#6d684a" strokeWidth="1.1" />
+      <ellipse cx={o1x + 7} cy={o1y + 16} rx="5.4" ry="6.8" fill="url(#lcO)" />
+      <path d={`M${o2x} ${o2y} l-4 11`} stroke="#6d684a" strokeWidth="1.1" />
+      <ellipse cx={o2x - 5} cy={o2y + 17} rx="5" ry="6.4" fill="url(#lcO)" />
+    </svg>
+  );
+}
