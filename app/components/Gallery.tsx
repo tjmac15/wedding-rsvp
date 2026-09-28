@@ -6,6 +6,9 @@ import Image from "next/image";
 /** Masonry gallery with a full-screen lightbox (arrows, Esc, swipe). */
 export default function Gallery({ photos }: { photos: string[] }) {
   const [idx, setIdx] = useState<number | null>(null);
+  const [all, setAll] = useState(false);
+  const LIMIT = 9;
+  const shown = all ? photos : photos.slice(0, LIMIT);
   const touchX = useRef<number | null>(null);
 
   const close = useCallback(() => setIdx(null), []);
@@ -43,17 +46,37 @@ export default function Gallery({ photos }: { photos: string[] }) {
 
   return (
     <>
-      <div className="masonry">
-        {photos.map((src, i) => (
-          <button key={src} className="m-item" onClick={() => setIdx(i)} aria-label={`Open photo ${i + 1}`}>
-            <Image
-              src={src} alt="" width={1400} height={2010} quality={72}
-              sizes="(max-width: 600px) 50vw, (max-width: 1100px) 33vw, 380px"
-              style={{ width: "100%", height: "auto" }}
-            />
-          </button>
-        ))}
+      <div className="masonry mosaic">
+        {shown.map((src, i) => {
+          const isMore = !all && i === LIMIT - 1 && photos.length > LIMIT;
+          const big = i % 6 === 0 ? (Math.floor(i / 6) % 2 ? " big right" : " big") : "";
+          return (
+            <button
+              key={src}
+              className={`m-item${big}`}
+              onClick={() => (isMore ? setAll(true) : setIdx(i))}
+              aria-label={isMore ? `Show all ${photos.length} photos` : `Open photo ${i + 1}`}
+            >
+              <Image
+                src={src} alt="" width={1400} height={2010} quality={72}
+                sizes={big ? "(max-width: 600px) 66vw, 500px" : "(max-width: 600px) 33vw, 260px"}
+                style={{ width: "100%", height: "auto" }}
+              />
+              {isMore && (
+                <span className="m-more">
+                  <b>+{photos.length - LIMIT}</b>
+                  <small>more photos</small>
+                </span>
+              )}
+            </button>
+          );
+        })}
       </div>
+      {all && photos.length > LIMIT && (
+        <p className="m-less">
+          <button onClick={() => setAll(false)}>Show fewer photos</button>
+        </p>
+      )}
 
       {idx !== null && (
         <div
