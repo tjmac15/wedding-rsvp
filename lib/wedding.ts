@@ -7,13 +7,13 @@ export const wedding = {
   groom: "TJ Macaraeg",
   bride: "France Marriela Rendon",
   groomShort: "TJ",
-  brideShort: "France",
-  monogram: "T&F",
-  hashtag: "#TJandFranceForever",
+  brideShort: "Mariel",
+  monogram: "T&Ms",
+  
 
   // Wedding day — ISO with Philippine time offset (+08:00)
-  dateISO: "2026-12-08T15:00:00+08:00",
-  endISO: "2026-12-08T22:00:00+08:00",
+  dateISO: "2026-12-08T16:30:00+08:00",
+  endISO: "2026-12-08T23:00:00+08:00",
   dateLabel: "Tuesday, December 8, 2026",
   dateShort: "12 · 08 · 2026",
 
@@ -39,36 +39,37 @@ export const wedding = {
 
   // Order of the day — edit times to match your program
   schedule: [
-    { time: "2:30 PM", title: "Guest Arrival", note: "Welcome drinks in the garden" },
-    { time: "3:00 PM", title: "Ceremony", note: "Please be seated by 2:50 PM" },
-    { time: "4:00 PM", title: "Cocktails & Photos", note: "Golden hour on the roof deck" },
-    { time: "5:30 PM", title: "Reception", note: "Dinner, toasts & dancing" },
+    { time: "3:30 PM", title: "Guest Arrival", note: "Welcome drinks in the garden" },
+    { time: "4:30 PM", title: "Ceremony", note: "Please be seated by 2:50 PM" },
+    { time: "6:00 PM", title: "Cocktails & Photos", note: "Golden hour on the roof deck" },
+    { time: "6:30 PM", title: "Reception", note: "Dinner, toasts & dancing" },
   ],
 
   // Our story — edit or remove milestones
   story: [
-    { year: "The Beginning", title: "How we met", text: "Write a line or two about the day your paths first crossed." },
-    { year: "The Adventure", title: "Falling in love", text: "The trips, the late-night talks, the little moments that made it real." },
-    { year: "The Question", title: "The proposal", text: "Where, when, and how — and of course, she said yes." },
+    { year: "The Beginning", title: "How we met", text: "One little swipe brought us together, and somehow everything just clicked." },
+    { year: "The Adventure", title: "Falling in love", text: "Somewhere between new places, good food, quiet nights and growing side by side, we became home to each other." },
+    { year: "The Question", title: "The proposal", text: "With God at the heart of our story, we chose forever - and beneath of a worhsip song, she said YES." },
   ],
 
   dressCode: {
-    title: "Garden Formal",
-    text: "We'd love to see you in soft, romantic tones. Kindly avoid white and ivory — those are reserved for the bride.",
+    title: "Forest Formal",
+    text: "Our palette is inspired by the forest: earthy greens and rich browns. Kindly avoid pure white — that's reserved for the bride.",
     colors: [
-      { hex: "#A3B18A", name: "Sage" },
-      { hex: "#E9DCC0", name: "Champagne" },
-      { hex: "#D9A9A0", name: "Dusty Rose" },
-      { hex: "#B7A28A", name: "Taupe" },
-      { hex: "#6B7A5A", name: "Olive" },
+      { hex: "#80856D", name: "Oil Green" },
+      { hex: "#5A4A42", name: "Hot Fudge" },
+      { hex: "#EDE3D2", name: "Antique White" },
+    ],
+  },
     ],
   },
 
   gifts:
-    "Your presence is the greatest gift of all. Should you wish to bless us further, a monetary gift toward our new home would be warmly appreciated.",
+    "Your presence is the greatest gift of all. Should you wish to bless us further, a monetary gift toward our new future together would be warmly appreciated.",
 
   notes: [
-    "We love your little ones, but this is an adults-only celebration.",
+    "We'd love everyone to look their best and make the photos extra beautiful, so please come dressed according to the dress code and bring your best look.",
+    "This is an intimate family celebration, and having you there to witness this special chapter, means more to us, than we can say.",
     "Kindly RSVP only for the number of seats reserved for you.",
     "Unplugged ceremony — please keep phones away while we say our vows.",
   ],
