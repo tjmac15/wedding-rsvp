@@ -36,7 +36,6 @@ export default function Gallery({ photos }: { photos: string[] }) {
             <span className="script">T&amp;F</span>
           </div>
         ))}
-        <p className="gallery-note">Add your photos to <code>public/photos</code> and they&apos;ll appear here.</p>
       </div>
     );
   }
