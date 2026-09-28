@@ -227,7 +227,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Marquee dark items={["With love", w.hashtag, "Save the date", "Rico's Cafe", "12 · 08 · 2026"]} />
+      <Marquee dark items={["With love", "Save the date", "Rico's Cafe", "12 · 08 · 2026"]} />
 
       {/* ── ATTIRE / GIFTS ────────────────────── */}
       <section className="block alt" id="attire">
@@ -279,8 +279,6 @@ export default function Home() {
         <Flourish />
         <p className="script foot-names">{w.groomShort} &amp; {w.brideShort}</p>
         <p className="eyebrow">{w.dateLabel} · {w.venue.name}</p>
-        <p className="hashtag">{w.hashtag}</p>
-        <p className="foot-small">Share your photos with our hashtag ♡</p>
       </footer>
     </main>
   );

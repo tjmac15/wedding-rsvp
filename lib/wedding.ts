@@ -61,8 +61,6 @@ export const wedding = {
       { hex: "#EDE3D2", name: "Antique White" },
     ],
   },
-    ],
-  },
 
   gifts:
     "Your presence is the greatest gift of all. Should you wish to bless us further, a monetary gift toward our new future together would be warmly appreciated.",
