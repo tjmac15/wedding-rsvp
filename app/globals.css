@@ -861,3 +861,69 @@ body { background: #e6e6de; color: #040301; }
 .ph-1 { background: linear-gradient(160deg, #d9d7c9, #c2bea6); }
 .ph-2 { background: linear-gradient(160deg, #e0dfd6, #cfcdbf); }
 .ph .script { color: rgba(71, 75, 51, 0.4); }
+/* ═══ ENVELOPE — linen texture, gold edges, sprig & wax seal ═══ */
+.envelope { --w: min(86vw, 460px); }
+.env-back { background: #33362a; border-radius: 3px; }
+.env-front {
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 4px),
+    linear-gradient(to top right, #42462f 49.6%, rgba(168,164,137,0.55) 49.8%, transparent 50.2%) left / 50.5% 100% no-repeat,
+    linear-gradient(to top left, #42462f 49.6%, rgba(168,164,137,0.55) 49.8%, transparent 50.2%) right / 50.5% 100% no-repeat,
+    linear-gradient(to top, #474b33 0 52%, transparent 52%);
+  -webkit-mask:
+    linear-gradient(to top right, #000 50%, transparent 50.3%) left / 50.5% 100% no-repeat,
+    linear-gradient(to top left, #000 50%, transparent 50.3%) right / 50.5% 100% no-repeat,
+    linear-gradient(to top, #000 52%, transparent 52%);
+          mask:
+    linear-gradient(to top right, #000 50%, transparent 50.3%) left / 50.5% 100% no-repeat,
+    linear-gradient(to top left, #000 50%, transparent 50.3%) right / 50.5% 100% no-repeat,
+    linear-gradient(to top, #000 52%, transparent 52%);
+}
+/* gold edge on the flap */
+.env-flap { background: #a8a489; border-radius: 3px 3px 0 0; }
+.env-flap::before {
+  content: ""; position: absolute; inset: 0;
+  clip-path: polygon(0.5% 0, 99.5% 0, 50% 98.6%);
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 4px),
+    linear-gradient(to bottom, #3a3d29, #44482f);
+}
+/* thin gold border around the envelope */
+.envelope::after {
+  content: ""; position: absolute; inset: 9px; z-index: 3; pointer-events: none;
+  border: 1px solid rgba(214, 209, 180, 0.28); border-radius: 2px;
+}
+/* leafy sprig tucked under the seal */
+.envelope::before {
+  content: ""; position: absolute; z-index: 5; pointer-events: none;
+  width: 190px; height: 110px; left: 50%; top: 62%; transform: translate(-58%, -62%) rotate(-8deg);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 110'%3E%3Cg fill='none' stroke='%23c9c4a2' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M8 92 C60 70 120 52 182 22'/%3E%3Cpath d='M150 38 C160 20 176 12 186 10'/%3E%3C/g%3E%3Cg fill='%23a8a489'%3E%3Cpath d='M30 84c-4-12 2-22 12-26-2 12-6 20-12 26z'/%3E%3Cpath d='M34 82c10 4 20 2 26-6-12-2-20 0-26 6z'/%3E%3Cpath d='M62 72c-4-12 2-22 12-26-2 12-6 20-12 26z'/%3E%3Cpath d='M66 70c10 4 20 2 26-6-12-2-20 0-26 6z'/%3E%3Cpath d='M128 46c-2-12 6-20 16-22-4 12-8 18-16 22z'/%3E%3Cpath d='M132 44c10 6 20 4 26-2-12-4-20-2-26 2z'/%3E%3Cpath d='M158 30c0-10 8-16 16-16-4 10-8 14-16 16z'/%3E%3C/g%3E%3Cg fill='%23d6d1b4'%3E%3Ccircle cx='184' cy='10' r='2.4'/%3E%3Ccircle cx='176' cy='8' r='1.8'/%3E%3Ccircle cx='186' cy='18' r='1.8'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  transition: opacity 0.4s ease;
+}
+.opening .envelope::before, .opening .envelope::after { opacity: 0; }
+
+/* wax seal: irregular poured-wax edge, raised rim, centred monogram */
+.seal {
+  width: 84px; height: 84px; padding: 0; display: flex; align-items: center; justify-content: center;
+  border-radius: 47% 53% 49% 51% / 52% 46% 54% 48%;
+  background: radial-gradient(circle at 38% 32%, #9c9772 0%, #7a7553 38%, #6d684a 62%, #555137 100%);
+  box-shadow:
+    0 8px 18px rgba(20, 22, 12, 0.5),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.35),
+    inset 0 4px 6px rgba(255, 255, 255, 0.22),
+    inset 0 0 0 7px rgba(0, 0, 0, 0.06);
+}
+.seal::before { inset: 11px; border: 1.5px solid rgba(230, 230, 222, 0.35); border-radius: 50%; box-shadow: inset 0 1px 2px rgba(0,0,0,0.25), 0 1px 0 rgba(255,255,255,0.15); }
+.seal::after { /* little wax drip */
+  content: ""; position: absolute; right: -5px; bottom: 10px; width: 16px; height: 13px;
+  border-radius: 50% 60% 55% 45%; background: #625d41; box-shadow: inset 0 2px 2px rgba(255,255,255,0.15);
+}
+.seal span {
+  display: block; width: 100%; text-align: center; line-height: 1; white-space: nowrap;
+  font-family: var(--font-serif), serif; font-size: 20px; font-weight: 600;
+  letter-spacing: 0.06em; text-indent: 0.06em; color: #e6e6de;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.35), 0 1px 0 rgba(255,255,255,0.18);
+}
