@@ -203,6 +203,13 @@ export default function Home() {
               </Reveal>
             ))}
 
+            {w.entourage.bearers.map((g, i) => (
+              <Reveal key={g.role} delay={i * 80} className="et et-half">
+                <p className="et-role">{g.role}</p>
+                {g.names.map((n) => <p key={n} className="et-name">{n}</p>)}
+              </Reveal>
+            ))}
+
             <Reveal className="et et-full">
               <p className="et-role">Flower Girls</p>
               <ul className="et-girls">

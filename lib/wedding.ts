@@ -96,6 +96,10 @@ export const wedding = {
       { role: "Veil", names: ["Mr. VJ Cabinian", "Ms. Vianjen Rendon"] },
       { role: "Cord", names: ["Mr. Christian Rendon", "Ms. Jazzen Macaraeg"] },
     ],
+    bearers: [
+      { role: "Bible Bearer", names: ["Vander Louise Macaraeg"] },
+      { role: "Ring Bearer", names: ["Philo Requina"] },
+    ],
     flowerGirls: ["Gaela Ylisse Gozum", "Princess Katelyn Macaraeg", "Athena Louise Alzona", "Zia Macaraeg"],
   },
   
