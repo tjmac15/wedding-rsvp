@@ -84,10 +84,6 @@ export default function RsvpForm({ maxGuests, deadlineISO, deadlineLabel }: Prop
           <label htmlFor="email">Email</label>
           <input id="email" name="email" type="email" required maxLength={150} autoComplete="email" />
         </div>
-        <div className="field">
-          <label htmlFor="phone">Mobile (optional)</label>
-          <input id="phone" name="phone" type="tel" maxLength={30} autoComplete="tel" />
-        </div>
       </div>
 
       <div className="field">
