@@ -1409,3 +1409,86 @@ body::before { opacity: 0.2; }
   text-shadow: 0 0 14px rgba(240, 239, 232, 0.95), 0 0 4px rgba(240, 239, 232, 0.9);
 }
 #story .t-card p:last-child { color: #16150f; }
+/* ═════════════════════════════════════════════════════════════
+   BALANCE — softer etch, bigger desktop, bolder text
+   ═════════════════════════════════════════════════════════════ */
+/* 1. etch: smaller repeating pattern + lighter veil so it stays in the background */
+body {
+  background:
+    linear-gradient(rgba(236, 236, 229, 0.62), rgba(236, 236, 229, 0.62)),
+    #e6e6de url("/bg/etch-tile.jpg") center top / 1040px auto repeat;
+}
+@media (min-width: 1024px) {
+  body {
+    background:
+      linear-gradient(rgba(236, 236, 229, 0.6), rgba(236, 236, 229, 0.6)),
+      #e6e6de url("/bg/etch-tile.jpg") center top / 1280px auto repeat;
+  }
+}
+/* lake bands: a touch softer */
+#story::before, #gallery::before {
+  background:
+    linear-gradient(rgba(238, 238, 231, 0.4), rgba(238, 238, 231, 0.4)),
+    url("/bg/lake.jpg") center 58% / cover no-repeat;
+}
+
+/* 2. desktop: no more shrinking — everything larger */
+@media (min-width: 1024px) {
+  body { zoom: 1; font-size: 19px; }
+  .inv { min-height: 100svh; }
+  .inv-stage { --h: min(88svh, 820px); width: min(100%, 1240px); }
+  .inv-card { width: min(100%, 600px); padding: 74px 48px 40px; }
+  .inv-mono p { font-size: 26px; }
+  .inv-small { font-size: 13px; }
+  .inv-names > span:not(.inv-and) { font-size: clamp(30px, 2.9vw, 42px); }
+  .inv-and { font-size: 34px; }
+  .inv-date span { font-size: 13px; min-width: 120px; }
+  .inv-date strong { font-size: 60px; }
+  .inv-year { font-size: 14px; }
+  .inv-script { font-size: 32px; }
+  .inv-venue { font-size: 13px; }
+  .inv .countdown strong { font-size: 28px; }
+  .inv .countdown span { font-size: 11px; }
+  .inv .btn { font-size: 13px; padding: 15px 36px; }
+  .inv-olive { height: 64%; }
+  .section-title h2 { font-size: clamp(38px, 3.4vw, 52px); }
+  .section-title .eyebrow { font-size: 36px; }
+  .wrap { max-width: 1100px; }
+  .narrow { max-width: 720px; }
+  .quote-text { font-size: 30px; }
+  .welcome-body { font-size: 20px; }
+  .t-card h3 { font-size: 23px; }
+  .t-card p:last-child { font-size: 19px; }
+  .schedule { max-width: 1000px; margin-left: auto; margin-right: auto; }
+  .sched-title { font-size: 18px; }
+  .sched-note, .sched-time { font-size: 15px; }
+  .venue { max-width: 1000px; margin: 0 auto; }
+  .venue-name { font-size: 44px; }
+  .venue-desc, .venue-addr, .tips { font-size: 18px; }
+  .masonry.mosaic { max-width: 900px; grid-auto-rows: calc((min(100cqw, 900px) - 16px) / 3); }
+  .lead { font-size: 22px; }
+  .notes li { font-size: 17px; }
+  .swatch span { width: 110px; height: 132px; }
+  .swatch em { font-size: 13px; }
+  .field label, .legend { font-size: 13px; }
+  .field input, .field select, .field textarea, .choice label { font-size: 18px; }
+  .nav-links a { font-size: 13px; }
+}
+
+/* 3. bolder, darker text everywhere */
+body { color: #040301; }
+.eyebrow, .inv-small, .inv-year, .inv-venue, .sched-time, .field label, .legend, .countdown span, .cal-grid b, .nav-links a {
+  font-weight: 700; color: #1d1c14;
+}
+.section-title h2, .inv-names > span:not(.inv-and), .t-card h3, .sched-title, .venue-name, .inv-mono p, .inv-date span, .foot-names {
+  font-weight: 600; color: #040301;
+}
+.inv-date strong, .inv .countdown strong { font-weight: 500; color: #040301; }
+.lead, .quote-text, .welcome-body, .t-card p, .sched-note, .venue-desc, .venue-addr, .tips, .notes li, .deadline, .swatch em, .thanks p {
+  font-weight: 600; color: #121109;
+}
+.inv-script, .inv-and, .section-title .eyebrow { color: #474b33; font-weight: 400; text-shadow: 0 0 0.6px #474b33; }
+.btn { font-weight: 700; }
+
+/* gallery heading: just "OUR GALLERY" */
+#gallery .section-title .eyebrow { display: none; }
