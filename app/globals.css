@@ -1376,3 +1376,36 @@ section.block { padding: clamp(60px, 8vw, 96px) 20px; }
 .welcome-date { display: none; }
 .welcome-grid { grid-template-columns: 1fr; max-width: 680px; }
 .welcome-copy, .welcome-copy .quote-text { text-align: center; }
+/* ═════════════════════════════════════════════════════════════
+   BACKGROUND BANDS — etched paper / lake painting, alternating
+   1 cover+welcome: etch · 2 story: lake · 3 details: etch
+   4 gallery: lake · 5 dress code + RSVP: etch
+   ═════════════════════════════════════════════════════════════ */
+html::before { display: none; }                         /* turn off the old blended backdrop */
+html { background: #e6e6de; }
+body {
+  background:
+    linear-gradient(rgba(233, 233, 226, 0.35), rgba(233, 233, 226, 0.35)),
+    #e6e6de url("/bg/etch.jpg") center top / 100% auto repeat-y;
+}
+body::before { opacity: 0.2; }
+.inv, .welcome, .marquee, section.block, section.alt, .rsvp-section { background: transparent; }
+
+/* lake bands, fading softly into the paper above and below */
+#story, #gallery { position: relative; isolation: isolate; }
+#story::before, #gallery::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(rgba(236, 236, 229, 0.28), rgba(236, 236, 229, 0.28)),
+    url("/bg/lake.jpg") center 58% / cover no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 90px, #000 calc(100% - 90px), transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 90px, #000 calc(100% - 90px), transparent 100%);
+}
+#story { padding-top: 110px; padding-bottom: 110px; }
+#gallery { padding-top: 110px; padding-bottom: 120px; }
+
+/* keep text crisp over the painting */
+#story .section-title, #story .timeline, #gallery .section-title, .m-less {
+  text-shadow: 0 0 14px rgba(240, 239, 232, 0.95), 0 0 4px rgba(240, 239, 232, 0.9);
+}
+#story .t-card p:last-child { color: #16150f; }
