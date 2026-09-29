@@ -178,6 +178,55 @@ export default function Home() {
         <div className="wrap">
           <Reveal><Title eyebrow="When & where" title="The Details" /></Reveal>
 
+          {/* ── ENTOURAGE (inside Details) ── */}
+          <Reveal>
+            <div className="ent-card" id="entourage">
+              <Sprig className="ent-sprig" />
+              <p className="ent-kicker">With the ones we love</p>
+              <h3 className="ent-title">The Entourage</h3>
+              <Divider />
+
+              <h4 className="ent-role">Principal Sponsors</h4>
+              <ul className="ent-sponsors">
+                {w.entourage.sponsors.map(([a, b]) => (
+                  <li key={a}><span>{a}</span><i>&amp;</i><span>{b}</span></li>
+                ))}
+              </ul>
+
+              <div className="ent-rule" />
+
+              <div className="ent-cols two">
+                {w.entourage.honor.map((g) => (
+                  <div key={g.role}>
+                    <h4 className="ent-role">{g.role}</h4>
+                    {g.names.map((n) => <p key={n} className="ent-name">{n}</p>)}
+                  </div>
+                ))}
+              </div>
+
+              <div className="ent-rule" />
+
+              <div className="ent-cols three">
+                {w.entourage.secondary.map((g) => (
+                  <div key={g.role}>
+                    <h4 className="ent-role">{g.role}</h4>
+                    <p className="ent-name">{g.names[0]}</p>
+                    <p className="ent-amp">&amp;</p>
+                    <p className="ent-name">{g.names[1]}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="ent-rule" />
+
+              <h4 className="ent-role">Flower Girls</h4>
+              <ul className="ent-girls">
+                {w.entourage.flowerGirls.map((n) => <li key={n} className="ent-name">{n}</li>)}
+              </ul>
+              <Divider className="ent-end" />
+            </div>
+          </Reveal>
+
           <div className="schedule">
             {w.schedule.map((s, i) => (
               <Reveal key={s.title} delay={i * 110} className="sched-item">
@@ -238,57 +287,6 @@ export default function Home() {
                 location={`${w.venue.name}, ${w.venue.address}`}
                 details={`We can't wait to celebrate with you! RSVP by ${w.rsvpDeadlineLabel}.`}
               />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── ENTOURAGE ─────────────────────────── */}
-      <section className="block" id="entourage">
-        <div className="wrap">
-          <Reveal><Title eyebrow="With the ones we love" title="The Entourage" /></Reveal>
-
-          <Reveal>
-            <div className="ent-group">
-              <h3 className="ent-role">Principal Sponsors</h3>
-              <ul className="ent-sponsors">
-                {w.entourage.sponsors.map(([a, b]) => (
-                  <li key={a}><span>{a}</span><i>&amp;</i><span>{b}</span></li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <div className="ent-row">
-              {w.entourage.honor.map((g) => (
-                <div className="ent-group" key={g.role}>
-                  <h3 className="ent-role">{g.role}</h3>
-                  {g.names.map((n) => <p key={n} className="ent-name">{n}</p>)}
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <div className="ent-row three">
-              {w.entourage.secondary.map((g) => (
-                <div className="ent-group" key={g.role}>
-                  <h3 className="ent-role">{g.role}</h3>
-                  <p className="ent-name">{g.names[0]}</p>
-                  <p className="ent-amp">&amp;</p>
-                  <p className="ent-name">{g.names[1]}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <div className="ent-group">
-              <h3 className="ent-role">Flower Girls</h3>
-              <ul className="ent-list">
-                {w.entourage.flowerGirls.map((n) => <li key={n} className="ent-name">{n}</li>)}
-              </ul>
             </div>
           </Reveal>
         </div>

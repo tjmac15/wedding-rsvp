@@ -1551,3 +1551,29 @@ body { color: #040301; }
   .ent-sponsors li { padding: 6px 0; }
 }
 #entourage .ent-row .ent-group { margin: 0; }
+/* ═══ Entourage: framed card instead of an arch ═══ */
+.ent-card {
+  border-radius: 4px;
+  padding: 64px clamp(18px, 6vw, 70px) 52px;
+}
+.ent-card::before {
+  inset: 12px; border-radius: 2px;
+  border: 1px solid rgba(109, 104, 74, 0.7);
+  outline: 1px solid rgba(109, 104, 74, 0.35); outline-offset: -6px;
+}
+.ent-card::after {
+  content: "✦"; position: absolute; inset: 0; pointer-events: none;
+  color: #6d684a; font-size: 12px; line-height: 1;
+  background:
+    radial-gradient(circle, #f3f3ed 7px, transparent 8px) 6px 6px / 20px 20px no-repeat,
+    radial-gradient(circle, #f3f3ed 7px, transparent 8px) calc(100% - 6px) 6px / 20px 20px no-repeat,
+    radial-gradient(circle, #f3f3ed 7px, transparent 8px) 6px calc(100% - 6px) / 20px 20px no-repeat,
+    radial-gradient(circle, #f3f3ed 7px, transparent 8px) calc(100% - 6px) calc(100% - 6px) / 20px 20px no-repeat;
+  text-shadow:
+    calc(-50% + 0px) 0 0 transparent;
+}
+.ent-card .ent-corner { display: none; }
+@media (max-width: 700px) {
+  .ent-card { border-radius: 4px; padding: 50px 14px 38px; }
+  .ent-card::before { inset: 8px; border-radius: 2px; }
+}
