@@ -173,19 +173,12 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* ── DETAILS ───────────────────────────── */}
-      <section className="block alt" id="details">
+      {/* ── ENTOURAGE ─────────────────────────── */}
+      <section className="block" id="entourage">
         <div className="wrap">
-          <Reveal><Title eyebrow="When & where" title="The Details" /></Reveal>
-
-          {/* ── ENTOURAGE (inside Details) ── */}
+          <Reveal><Title eyebrow="With the ones we love" title="The Entourage" /></Reveal>
           <Reveal>
-            <div className="ent-card" id="entourage">
-              <Sprig className="ent-sprig" />
-              <p className="ent-kicker">With the ones we love</p>
-              <h3 className="ent-title">The Entourage</h3>
-              <Divider />
-
+            <div className="ent-card">
               <h4 className="ent-role">Principal Sponsors</h4>
               <ul className="ent-sponsors">
                 {w.entourage.sponsors.map(([a, b]) => (
@@ -223,9 +216,15 @@ export default function Home() {
               <ul className="ent-girls">
                 {w.entourage.flowerGirls.map((n) => <li key={n} className="ent-name">{n}</li>)}
               </ul>
-              <Divider className="ent-end" />
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ── DETAILS ───────────────────────────── */}
+      <section className="block alt" id="details">
+        <div className="wrap">
+          <Reveal><Title eyebrow="When & where" title="The Details" /></Reveal>
 
           <div className="schedule">
             {w.schedule.map((s, i) => (
@@ -295,7 +294,7 @@ export default function Home() {
       {/* ── GALLERY ───────────────────────────── */}
       <section className="block" id="gallery">
         <div className="wrap wide">
-          <Reveal><Title eyebrow="Moments with you" title="Our Gallery" /></Reveal>
+          <Reveal><Title eyebrow="Memories we share" title="Our Gallery" /></Reveal>
           <Reveal><Gallery photos={photos.gallery} /></Reveal>
         </div>
       </section>
