@@ -246,7 +246,7 @@ export default function Home() {
       {/* ── GALLERY ───────────────────────────── */}
       <section className="block" id="gallery">
         <div className="wrap wide">
-          <Reveal><Title eyebrow=" ="Our Gallery" /></Reveal>
+          <Reveal><Title eyebrow="Moments with you" title="Our Gallery" /></Reveal>
           <Reveal><Gallery photos={photos.gallery} /></Reveal>
         </div>
       </section>
