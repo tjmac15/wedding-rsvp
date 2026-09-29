@@ -1492,3 +1492,12 @@ body { color: #040301; }
 
 /* gallery heading: just "OUR GALLERY" */
 #gallery .section-title .eyebrow { display: none; }
+/* ═══ Map lines up with the venue card ═══ */
+.map-frame {
+  max-width: 1000px;
+  margin: 16px auto 0;
+  border-radius: 2px;
+  border: 1px solid var(--line);
+  box-shadow: 0 40px 70px -45px rgba(54, 53, 47, 0.55);
+  overflow: hidden;
+}
