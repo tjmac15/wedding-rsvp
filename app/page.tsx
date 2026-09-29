@@ -177,47 +177,39 @@ export default function Home() {
       <section className="block" id="entourage">
         <div className="wrap">
           <Reveal><Title eyebrow="With the ones we love" title="The Entourage" /></Reveal>
-          <Reveal>
-            <div className="ent-card">
-              <h4 className="ent-role">Principal Sponsors</h4>
-              <ul className="ent-sponsors">
+          <div className="entg">
+            <Reveal className="et et-full">
+              <p className="et-role">Principal Sponsors</p>
+              <ul className="et-sponsors">
                 {w.entourage.sponsors.map(([a, b]) => (
-                  <li key={a}><span>{a}</span><i>&amp;</i><span>{b}</span></li>
+                  <li key={a}>{a} <i>&amp;</i> {b}</li>
                 ))}
               </ul>
+            </Reveal>
 
-              <div className="ent-rule" />
+            {w.entourage.honor.map((g, i) => (
+              <Reveal key={g.role} delay={i * 80} className="et et-half">
+                <p className="et-role">{g.role}</p>
+                {g.names.map((n) => <p key={n} className="et-name">{n}</p>)}
+              </Reveal>
+            ))}
 
-              <div className="ent-cols two">
-                {w.entourage.honor.map((g) => (
-                  <div key={g.role}>
-                    <h4 className="ent-role">{g.role}</h4>
-                    {g.names.map((n) => <p key={n} className="ent-name">{n}</p>)}
-                  </div>
-                ))}
-              </div>
+            {w.entourage.secondary.map((g, i) => (
+              <Reveal key={g.role} delay={i * 80} className={`et et-third${i === 2 ? " et-last" : ""}`}>
+                <p className="et-role">{g.role}</p>
+                <p className="et-name">{g.names[0]}</p>
+                <p className="et-amp">&amp;</p>
+                <p className="et-name">{g.names[1]}</p>
+              </Reveal>
+            ))}
 
-              <div className="ent-rule" />
-
-              <div className="ent-cols three">
-                {w.entourage.secondary.map((g) => (
-                  <div key={g.role}>
-                    <h4 className="ent-role">{g.role}</h4>
-                    <p className="ent-name">{g.names[0]}</p>
-                    <p className="ent-amp">&amp;</p>
-                    <p className="ent-name">{g.names[1]}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="ent-rule" />
-
-              <h4 className="ent-role">Flower Girls</h4>
-              <ul className="ent-girls">
-                {w.entourage.flowerGirls.map((n) => <li key={n} className="ent-name">{n}</li>)}
+            <Reveal className="et et-full">
+              <p className="et-role">Flower Girls</p>
+              <ul className="et-girls">
+                {w.entourage.flowerGirls.map((n) => <li key={n}>{n}</li>)}
               </ul>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
 
