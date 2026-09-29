@@ -1372,3 +1372,7 @@ section.block { padding: clamp(60px, 8vw, 96px) 20px; }
   .m-more b { font-size: 24px; }
   .m-more small { font-size: 8.5px; letter-spacing: 0.18em; }
 }
+/* ═══ Welcome: remove the big date block, keep the verse centred ═══ */
+.welcome-date { display: none; }
+.welcome-grid { grid-template-columns: 1fr; max-width: 680px; }
+.welcome-copy, .welcome-copy .quote-text { text-align: center; }
