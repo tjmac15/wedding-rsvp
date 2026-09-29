@@ -243,6 +243,57 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── ENTOURAGE ─────────────────────────── */}
+      <section className="block" id="entourage">
+        <div className="wrap">
+          <Reveal><Title eyebrow="With the ones we love" title="The Entourage" /></Reveal>
+
+          <Reveal>
+            <div className="ent-group">
+              <h3 className="ent-role">Principal Sponsors</h3>
+              <ul className="ent-sponsors">
+                {w.entourage.sponsors.map(([a, b]) => (
+                  <li key={a}><span>{a}</span><i>&amp;</i><span>{b}</span></li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="ent-row">
+              {w.entourage.honor.map((g) => (
+                <div className="ent-group" key={g.role}>
+                  <h3 className="ent-role">{g.role}</h3>
+                  {g.names.map((n) => <p key={n} className="ent-name">{n}</p>)}
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="ent-row three">
+              {w.entourage.secondary.map((g) => (
+                <div className="ent-group" key={g.role}>
+                  <h3 className="ent-role">{g.role}</h3>
+                  <p className="ent-name">{g.names[0]}</p>
+                  <p className="ent-amp">&amp;</p>
+                  <p className="ent-name">{g.names[1]}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="ent-group">
+              <h3 className="ent-role">Flower Girls</h3>
+              <ul className="ent-list">
+                {w.entourage.flowerGirls.map((n) => <li key={n} className="ent-name">{n}</li>)}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ── GALLERY ───────────────────────────── */}
       <section className="block" id="gallery">
         <div className="wrap wide">
