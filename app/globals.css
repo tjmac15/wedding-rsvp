@@ -1718,3 +1718,8 @@ section#gallery { padding-top: 170px; padding-bottom: 170px; }
   .et-sponsors i { font-size: 21px; margin: 0 7px; }
   .et-girls { gap: 6px 34px; }
 }
+/* ═══ Tighter gap between Entourage and The Details on phones ═══ */
+@media (max-width: 600px) {
+  #entourage { padding-bottom: 28px; }
+  #details { padding-top: 36px; }
+}
