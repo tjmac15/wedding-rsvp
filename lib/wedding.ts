@@ -41,10 +41,10 @@ export const wedding = {
 
   // Order of the day — edit times to match your program
   schedule: [
-    { time: "3:30 PM", title: "Guest Arrival", note: "Welcome drinks in the garden" },
-    { time: "4:30 PM", title: "Ceremony", note: "Please be seated by 4:30 PM" },
-    { time: "6:00 PM", title: "Cocktails & Photos", note: "Golden hour on the roof deck" },
-    { time: "6:30 PM", title: "Reception", note: "Dinner, toasts & dancing" },
+    { time: "3:00 PM", title: "Guest Arrival", note: "Welcome drinks in the garden" },
+    { time: "4:00 PM", title: "Ceremony", note: "Please be seated by 4:00 PM" },
+    { time: "5:30 PM", title: "Photo taking", note: "Golden hour by the lake" },
+    { time: "6:00 PM", title: "Reception", note: "Dinner, toasts & dancing" },
   ],
 
   // Our story — edit or remove milestones
@@ -67,7 +67,7 @@ export const wedding = {
       image: "/dresscode/entourage.webp",
       shades: ["#3F4A2A", "#5B6B3A", "#7A8450", "#9AA57A", "#4E5A36"],
       rules: [
-        { who: "Girls & Women", text: "Long dresses in shades of forest green: moss, olive, sage, deep green, or any earthy, foresty shade of green." },
+        { who: "Women", text: "Long dresses in shades of forest green: moss, olive, sage, deep green, or any earthy, foresty shade of green." },
         { who: "Men", text: "Formal attire in brown: a brown coat and tie, or a brown long-sleeve polo paired with formal trousers." },
       ],
     },
@@ -82,7 +82,7 @@ export const wedding = {
       "We'd love for everyone to look and feel their best, but we also want to keep things practical and comfortable.",
       "If you're planning to buy something new for the occasion, we hope you'll choose a piece you can wear and enjoy again long after our celebration. There's no need for anything grand or extravagant.",
     ],
-    noteLine: "Simple yet elegant. Comfortable yet polished. Just bring your best look and celebrate with us.",
+    noteLine: "Bring your best look and celebrate with us.",
   },
 
   gifts:

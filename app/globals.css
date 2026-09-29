@@ -2020,3 +2020,16 @@ section#gallery { padding-top: 170px; padding-bottom: 170px; }
 .dc-look { height: auto; background: #fff; }
 .dc-look img { height: auto; object-fit: contain; }
 .dc-look span { bottom: 12px; }
+/* ═══ Dress code tweaks ═══ */
+#attire .swatches { display: none; }                 /* remove the Pantone chips */
+.dc-who {                                            /* "Girls & Women", "Men", "Semi-Formal…" — not cursive */
+  font-family: var(--font-serif), serif !important;
+  font-size: 13px !important; font-weight: 700 !important;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: #474b33 !important; margin-bottom: 4px;
+}
+.dc-note-line {                                      /* closing line of the note — not cursive */
+  font-family: var(--font-serif), serif;
+  font-size: 16px; font-weight: 700; font-style: italic;
+  color: #474b33; margin-top: 10px;
+}
