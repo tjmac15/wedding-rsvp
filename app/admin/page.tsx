@@ -1,147 +1,360 @@
-"use client";
+import Image from "next/image";
+import { wedding as w } from "@/lib/wedding";
+import { getPhotos, hasMusic } from "@/lib/photos";
+import Countdown from "./components/Countdown";
+import Reveal from "./components/Reveal";
+import RsvpForm from "./components/RsvpForm";
+import Envelope from "./components/Envelope";
+import Petals from "./components/Petals";
+import Nav from "./components/Nav";
+import MusicToggle from "./components/MusicToggle";
+import Gallery from "./components/Gallery";
+import AddToCalendar from "./components/AddToCalendar";
+import { OliveBranch, Sprig, Divider, LeafCluster } from "./components/Ornaments";
+import Botanical from "./components/Botanical";
+import Marquee from "./components/Marquee";
 
-import { useMemo, useState } from "react";
+function Title({ eyebrow, title }: { eyebrow: string; title: string }) {
+  return (
+    <div className="section-title">
+      <p className="eyebrow">{eyebrow}</p>
+      <h2>{title}</h2>
+      <Divider />
+    </div>
+  );
+}
 
-type Rsvp = {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  attending: "yes" | "no";
-  guests: number;
-  plusOneName: string;
-  dietary: string;
-  message: string;
-  updatedAt: string | null;
-};
+const ONES = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+  "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+const TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+function yearWords(y: number) {
+  const r = y % 100;
+  const rest = r < 20 ? ONES[r] : `${TENS[Math.floor(r / 10)]}${r % 10 ? " " + ONES[r % 10] : ""}`;
+  return `two thousand${rest ? " " + rest : ""}`;
+}
 
-const csvCell = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
-
-export default function Admin() {
-  const [pw, setPw] = useState("");
-  const [rows, setRows] = useState<Rsvp[] | null>(null);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [q, setQ] = useState("");
-  const [filter, setFilter] = useState<"all" | "yes" | "no">("all");
-
-  async function load(e?: React.FormEvent) {
-    e?.preventDefault();
-    setLoading(true);
-    setError("");
-    try {
-      const res = await fetch("/api/admin/rsvps", { headers: { "x-admin-password": pw } });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to load");
-      setRows(data.rsvps);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to load");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const stats = useMemo(() => {
-    const r = rows ?? [];
-    const yes = r.filter((x) => x.attending === "yes");
-    return {
-      responses: r.length,
-      yes: yes.length,
-      no: r.length - yes.length,
-      seats: yes.reduce((s, x) => s + (x.guests || 0), 0),
-    };
-  }, [rows]);
-
-  const visible = useMemo(() => {
-    const term = q.toLowerCase();
-    return (rows ?? []).filter(
-      (r) =>
-        (filter === "all" || r.attending === filter) &&
-        (!term || `${r.name} ${r.email} ${r.plusOneName}`.toLowerCase().includes(term))
-    );
-  }, [rows, q, filter]);
-
-  function exportCsv() {
-    const head = ["Name", "Email", "Phone", "Attending", "Guests", "Guest name", "Dietary", "Message", "Updated"];
-    const lines = [head, ...visible.map((r) => [
-      r.name, r.email, r.phone, r.attending, r.guests, r.plusOneName, r.dietary, r.message, r.updatedAt ?? "",
-    ])].map((l) => l.map(csvCell).join(","));
-    const blob = new Blob(["﻿" + lines.join("\n")], { type: "text/csv;charset=utf-8" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = `rsvps-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click();
-    URL.revokeObjectURL(a.href);
-  }
-
-  if (!rows) {
-    return (
-      <main className="admin" style={{ maxWidth: 420 }}>
-        <h1>Guest list</h1>
-        <form className="form" onSubmit={load}>
-          {error && <div className="error">{error}</div>}
-          <div className="field">
-            <label htmlFor="pw">Admin password</label>
-            <input id="pw" type="password" value={pw} onChange={(e) => setPw(e.target.value)} autoFocus />
-          </div>
-          <button className="btn" style={{ marginTop: 4 }} disabled={loading}>
-            {loading ? "Loading…" : "View RSVPs"}
-          </button>
-        </form>
-      </main>
-    );
-  }
+export default function Home() {
+  const photos = getPhotos();
+  const music = hasMusic(w.musicSrc);
+  const d = new Date(w.dateISO);
+  const month = d.toLocaleString("en-US", { month: "long", timeZone: "Asia/Manila" });
+  const day = d.toLocaleString("en-US", { day: "numeric", timeZone: "Asia/Manila" });
+  const weekday = d.toLocaleString("en-US", { weekday: "long", timeZone: "Asia/Manila" });
+  const dayNum = d.toLocaleString("en-US", { day: "2-digit", timeZone: "Asia/Manila" });
+  const year = Number(d.toLocaleString("en-US", { year: "numeric", timeZone: "Asia/Manila" }));
+  const time = d.toLocaleString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "Asia/Manila" }).replace(/\s?[AP]M/, "");
+  const hour24 = Number(d.toLocaleString("en-US", { hour: "numeric", hourCycle: "h23", timeZone: "Asia/Manila" }));
+  const partOfDay = hour24 < 12 ? "morning" : hour24 < 17 ? "afternoon" : "evening";
+  const initialA = w.groomShort.charAt(0);
+  const initialB = w.brideShort.charAt(0);
+  const strip = w.coverPhoto ? `/photos/${w.coverPhoto}` : photos.hero ?? photos.gallery[0] ?? null;
+  const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(w.venue.mapQuery)}&output=embed`;
+  const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(w.venue.mapQuery)}`;
 
   return (
-    <main className="admin">
-      <h1>Guest list</h1>
-      <div className="stats">
-        <div className="stat"><b>{stats.seats}</b><span>Seats confirmed</span></div>
-        <div className="stat"><b>{stats.yes}</b><span>Attending</span></div>
-        <div className="stat"><b>{stats.no}</b><span>Declined</span></div>
-        <div className="stat"><b>{stats.responses}</b><span>Total responses</span></div>
-      </div>
+    <main>
+      <Envelope monogram={w.monogram} names={`${w.groomShort} & ${w.brideShort}`} date={w.dateShort} />
+      <Petals />
+      <Nav monogram={w.monogram} />
+      {music && <MusicToggle src={w.musicSrc} />}
 
-      <div className="toolbar">
-        <input placeholder="Search name or email" value={q} onChange={(e) => setQ(e.target.value)} />
-        <select value={filter} onChange={(e) => setFilter(e.target.value as typeof filter)}>
-          <option value="all">All</option>
-          <option value="yes">Attending</option>
-          <option value="no">Declined</option>
-        </select>
-        <button className="btn btn-ghost" onClick={() => load()} disabled={loading}>Refresh</button>
-        <button className="btn" onClick={exportCsv}>Export CSV</button>
-      </div>
+      {/* ── HERO: the invitation card ─────────── */}
+      <header className={`inv ${strip ? "has-strip" : ""}`} id="top">
+        <div className="inv-corner inv-corner-tl" aria-hidden />
+        <div className="inv-corner inv-corner-br" aria-hidden />
 
-      <div className="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th><th>Status</th><th>Guests</th><th>Guest name</th>
-              <th>Contact</th><th>Dietary</th><th>Message</th><th>Updated</th>
-            </tr>
-          </thead>
-          <tbody>
-            {visible.map((r) => (
-              <tr key={r.id}>
-                <td>{r.name}</td>
-                <td><span className={`pill ${r.attending}`}>{r.attending === "yes" ? "Attending" : "Declined"}</span></td>
-                <td>{r.guests}</td>
-                <td>{r.plusOneName}</td>
-                <td>{r.email}{r.phone && <><br />{r.phone}</>}</td>
-                <td>{r.dietary}</td>
-                <td style={{ maxWidth: 280 }}>{r.message}</td>
-                <td style={{ whiteSpace: "nowrap" }}>
-                  {r.updatedAt ? new Date(r.updatedAt).toLocaleDateString() : ""}
-                </td>
-              </tr>
+        <div className="inv-stage">
+          {strip && (
+            <div className="inv-strip">
+              <Image
+                src={strip} alt={`${w.groomShort} and ${w.brideShort}`} fill priority quality={78}
+                sizes="(max-width: 820px) 90vw, 480px"
+                style={{ objectFit: "cover", objectPosition: w.coverFocus }}
+              />
+            </div>
+          )}
+
+          <div className="inv-card">
+            <LeafCluster className="inv-leaves" />
+            <div className="inv-mono hero-line l1">
+              <Sprig />
+              <p><span>{initialA}</span><i /><span>{initialB}</span></p>
+            </div>
+
+            <p className="inv-small hero-line l2">Together with their families</p>
+            <h1 className="inv-names">
+              <span className="hero-line l2">{w.groom}</span>
+              <span className="inv-and hero-line l3"><i />and<i /></span>
+              <span className="hero-line l3">{w.bride}</span>
+            </h1>
+            <p className="inv-small hero-line l4">
+              Request the honour of your presence<br />at their wedding celebration
+            </p>
+
+            <div className="inv-date hero-line l4">
+              <span>{weekday}</span>
+              <strong>{dayNum}</strong>
+              <span>{month}</span>
+            </div>
+            <p className="inv-year hero-line l5">{year}</p>
+            <p className="inv-script hero-line l5">at {time} in the {partOfDay}</p>
+            <p className="inv-venue hero-line l5">{w.venue.name} &nbsp;·&nbsp; Santa Rosa, Laguna</p>
+
+            <div className="hero-line l6"><Countdown dateISO={w.dateISO} /></div>
+            <a className="btn hero-line l6" href="#rsvp">Kindly RSVP</a>
+            <Divider className="inv-foot hero-line l6" />
+          </div>
+
+          <OliveBranch className="inv-olive" />
+        </div>
+        <a className="scroll-cue" href="#story" aria-label="Scroll down"><span /></a>
+      </header>
+
+      {/* ── WELCOME (editorial) ────────────────── */}
+      <section className="welcome">
+        <div className="welcome-grid">
+          <Reveal from="left" className="welcome-date">
+            <span className="big-num">08</span>
+            <span className="roman">XII · MMXXVI</span>
+            <span className="eyebrow">Santa Rosa, Laguna</span>
+          </Reveal>
+          <Reveal from="right" delay={120} className="welcome-copy">
+            <p className="eyebrow">A celebration of love</p>
+            <p className="quote-text">
+              “So they are no longer two, but one flesh. Therefore what God has joined together, let no one separate.”
+            </p>
+            <p className="eyebrow" style={{ marginTop: 14 }}>Matthew 19:6</p>
+            <p className="welcome-body">
+              Among the lakes, terraces and quiet greens of Sta. Elena, we&apos;ll begin our forever, and we
+              can&apos;t imagine that day without you.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <Marquee items={["Celebrate", "Love", "Inspire", `${w.groomShort} & ${w.brideShort}`, "December 8, 2026"]} />
+
+      {/* ── OUR STORY ─────────────────────────── */}
+      <section className="block" id="story">
+        <div className="wrap">
+          <Reveal><Title eyebrow="How it all began" title="Our Story" /></Reveal>
+          <div className="timeline">
+            {w.story.map((s, i) => (
+              <Reveal key={s.title} from={i % 2 ? "right" : "left"} delay={i * 80} className={`t-item ${i % 2 ? "right" : "left"}`}>
+                <div className="t-dot" />
+                <div className="t-card">
+                  <p className="eyebrow">{s.year}</p>
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                </div>
+              </Reveal>
             ))}
-            {!visible.length && (
-              <tr><td colSpan={8} style={{ textAlign: "center", color: "var(--ink-soft)" }}>No RSVPs yet.</td></tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── DATE BAND ─────────────────────────── */}
+      <section className="date-band">
+        <Reveal from="zoom">
+          <div className="calendar">
+            <p className="eyebrow">{month} 2026</p>
+            <div className="cal-grid">
+              {["S", "M", "T", "W", "T", "F", "S"].map((x, i) => <b key={i}>{x}</b>)}
+              {(() => {
+                const first = new Date(Date.UTC(2026, 11, 1)).getUTCDay();
+                const cells = [];
+                for (let i = 0; i < first; i++) cells.push(<span key={`e${i}`} />);
+                for (let n = 1; n <= 31; n++)
+                  cells.push(<span key={n} className={n === Number(day) ? "the-day" : ""}>{n}</span>);
+                return cells;
+              })()}
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── DETAILS ───────────────────────────── */}
+      <section className="block alt" id="details">
+        <div className="wrap">
+          <Reveal><Title eyebrow="When & where" title="The Details" /></Reveal>
+
+          <div className="schedule">
+            {w.schedule.map((s, i) => (
+              <Reveal key={s.title} delay={i * 110} className="sched-item">
+                <span className="sched-time">{s.time}</span>
+                <span className="sched-title">{s.title}</span>
+                <span className="sched-note">{s.note}</span>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal from="up">
+            <div className="venue">
+              <div className="venue-media">
+                {photos.venue ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={photos.venue} alt={w.venue.name} loading="lazy" />
+                ) : (
+                  <iframe
+                    title={`Map to ${w.venue.name}`}
+                    src={mapEmbed}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                )}
+              </div>
+              <div className="venue-body">
+                <p className="eyebrow">Ceremony &amp; Reception</p>
+                <h3 className="venue-name script">{w.venue.name}</h3>
+                <p className="venue-sub">{w.venue.subtitle}</p>
+                <p className="venue-desc">{w.venue.description}</p>
+                <p className="venue-addr">{w.venue.address}</p>
+                <div className="venue-actions">
+                  <a className="btn" href={mapLink} target="_blank" rel="noopener noreferrer">Get directions</a>
+                  <a className="link" href={w.venue.website} target="_blank" rel="noopener noreferrer">Venue website →</a>
+                </div>
+                <ul className="tips">
+                  {w.venue.tips.map((t) => <li key={t}>{t}</li>)}
+                </ul>
+              </div>
+            </div>
+          </Reveal>
+
+          {photos.venue && (
+            <Reveal>
+              <div className="map-frame">
+                <iframe title={`Map to ${w.venue.name}`} src={mapEmbed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+              </div>
+            </Reveal>
+          )}
+
+          <Reveal>
+            <div style={{ textAlign: "center", marginTop: 44 }}>
+              <p className="eyebrow" style={{ marginBottom: 14 }}>Save the date</p>
+              <AddToCalendar
+                title={`${w.groomShort} & ${w.brideShort}'s Wedding`}
+                startISO={w.dateISO}
+                endISO={w.endISO}
+                location={`${w.venue.name}, ${w.venue.address}`}
+                details={`We can't wait to celebrate with you! RSVP by ${w.rsvpDeadlineLabel}.`}
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── ENTOURAGE ─────────────────────────── */}
+      <section className="block" id="entourage">
+        <div className="wrap">
+          <Reveal><Title eyebrow="With the ones we love" title="The Entourage" /></Reveal>
+
+          <Reveal>
+            <div className="ent-group">
+              <h3 className="ent-role">Principal Sponsors</h3>
+              <ul className="ent-sponsors">
+                {w.entourage.sponsors.map(([a, b]) => (
+                  <li key={a}><span>{a}</span><i>&amp;</i><span>{b}</span></li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="ent-row">
+              {w.entourage.honor.map((g) => (
+                <div className="ent-group" key={g.role}>
+                  <h3 className="ent-role">{g.role}</h3>
+                  {g.names.map((n) => <p key={n} className="ent-name">{n}</p>)}
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="ent-row three">
+              {w.entourage.secondary.map((g) => (
+                <div className="ent-group" key={g.role}>
+                  <h3 className="ent-role">{g.role}</h3>
+                  <p className="ent-name">{g.names[0]}</p>
+                  <p className="ent-amp">&amp;</p>
+                  <p className="ent-name">{g.names[1]}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="ent-group">
+              <h3 className="ent-role">Flower Girls</h3>
+              <ul className="ent-list">
+                {w.entourage.flowerGirls.map((n) => <li key={n} className="ent-name">{n}</li>)}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── GALLERY ───────────────────────────── */}
+      <section className="block" id="gallery">
+        <div className="wrap wide">
+          <Reveal><Title eyebrow="Moments with you" title="Our Gallery" /></Reveal>
+          <Reveal><Gallery photos={photos.gallery} /></Reveal>
+        </div>
+      </section>
+
+      <Marquee dark items={["With love", "Save the date", "Rico's Cafe", "12 · 08 · 2026"]} />
+
+      {/* ── ATTIRE / GIFTS ────────────────────── */}
+      <section className="block alt" id="attire">
+        <div className="narrow center">
+          <Reveal><Title eyebrow={w.dressCode.title} title="Dress Code" /></Reveal>
+          <Reveal><p className="lead">{w.dressCode.text}</p></Reveal>
+          <div className="swatches">
+            {w.dressCode.colors.map((c, i) => (
+              <Reveal key={c.hex} from="zoom" delay={i * 90}>
+                <div className="swatch">
+                  <span style={{ background: c.hex }} />
+                  <em>{c.name}</em>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <div style={{ marginTop: 96 }}>
+            <Reveal><Title eyebrow="A gentle note" title="Gifts" /></Reveal>
+            <Reveal><p className="lead">{w.gifts}</p></Reveal>
+          </div>
+
+          <Reveal>
+            <ul className="notes">
+              {w.notes.map((n) => <li key={n}>{n}</li>)}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── RSVP ──────────────────────────────── */}
+      <section className="block rsvp-section" id="rsvp">
+        <div className="narrow">
+          <Reveal><Title eyebrow="Kindly respond" title="RSVP" /></Reveal>
+          <Reveal from="zoom" className="form-wrap">
+            <Botanical className="bt-form-l" />
+            <Botanical className="bt-form-r" />
+            <RsvpForm
+              maxGuests={w.maxGuestsPerRsvp}
+              deadlineISO={w.rsvpDeadlineISO}
+              deadlineLabel={w.rsvpDeadlineLabel}
+            />
+          </Reveal>
+          <p className="deadline">Please reply on or before <strong>{w.rsvpDeadlineLabel}</strong>.</p>
+        </div>
+      </section>
+
+      <footer>
+        <Divider />
+        <p className="script foot-names">{w.groomShort} &amp; {w.brideShort}</p>
+        <p className="eyebrow">{w.dateLabel} · {w.venue.name}</p>
+      </footer>
     </main>
   );
 }

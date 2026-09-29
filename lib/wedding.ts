@@ -74,6 +74,31 @@ export const wedding = {
     "Unplugged ceremony — please keep phones away while we say our vows.",
   ],
 
+    // The Entourage
+  entourage: {
+    sponsors: [
+      ["Mr. Francisco Javier", "Mrs. Cecilia Javier"],
+      ["Mr. Manuel Macaraeg", "Mrs. Ma. Cecilia Macaraeg"],
+      ["Mr. Arnel Ferrer", "Mrs. Arlene Moulic"],
+      ["Mr. Aaron Ferrer", "Mrs. Marilou Juarez"],
+      ["Mr. Alvin Fidel", "Mrs. Jenny Baron"],
+      ["Mr. Leo Sunep", "Mrs. Anette Macaraeg"],
+      ["Mr. Joseph Macaraeg", "Mrs. Anna Macaraeg"],
+      ["Mr. Ray Manguerra", "Mrs. Rose Manguerra"],
+      ["Mr. Jun Manuevo", "Mrs. Naneth Manuevo"],
+    ],
+    honor: [
+      { role: "Maid of Honor", names: ["Ms. Shekina Mojado"] },
+      { role: "Best Man", names: ["Mr. John Eric Sorita"] },
+    ],
+    secondary: [
+      { role: "Candles", names: ["Mr. JR Cabinian", "Ms. Jonelle Rendon"] },
+      { role: "Veil", names: ["Mr. VJ Cabinian", "Ms. Vianjen Rendon"] },
+      { role: "Cord", names: ["Mr. Christian Rendon", "Ms. Jazzen Macaraeg"] },
+    ],
+    flowerGirls: ["Gaela Ylisse Gozum", "Princess Katelyn Macaraeg", "Athena Louise Alzona", "Zia Macaraeg"],
+  },
+  
   // Optional background music: put an mp3 at /public/music.mp3
   musicSrc: "/music.mp3",
 };
