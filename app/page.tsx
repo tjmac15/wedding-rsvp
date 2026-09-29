@@ -316,6 +316,46 @@ export default function Home() {
             ))}
           </div>
 
+          <div className="dc-grid">
+            {[
+              { k: "entourage", d: w.dressCode.entourage },
+              { k: "guests", d: w.dressCode.guests },
+            ].map(({ k, d }, i) => (
+              <Reveal key={k} delay={i * 120} className="dc-card">
+                <p className="dc-label">{d.label}</p>
+                <a className="dc-look" href={d.image} target="_blank" rel="noopener noreferrer" aria-label={`View ${d.label} lookbook`}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={d.image} alt={`${d.label} outfit inspiration`} loading="lazy" />
+                  <span>View lookbook</span>
+                </a>
+                <div className="dc-dots">
+                  {d.shades.map((s) => <i key={s} style={{ background: s }} />)}
+                </div>
+                {"rules" in d
+                  ? (d as typeof w.dressCode.entourage).rules.map((r) => (
+                      <div key={r.who} className="dc-rule">
+                        <p className="dc-who">{r.who}</p>
+                        <p>{r.text}</p>
+                      </div>
+                    ))
+                  : (
+                      <div className="dc-rule">
+                        <p className="dc-who">{(d as typeof w.dressCode.guests).attire}</p>
+                        <p>{(d as typeof w.dressCode.guests).text}</p>
+                      </div>
+                    )}
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <div className="dc-note">
+              <p className="dc-note-title">A little note from us</p>
+              {w.dressCode.note.map((n) => <p key={n}>{n}</p>)}
+              <p className="dc-note-line">{w.dressCode.noteLine}</p>
+            </div>
+          </Reveal>
+
           <div style={{ marginTop: 96 }}>
             <Reveal><Title eyebrow="A gentle note" title="Gifts" /></Reveal>
             <Reveal><p className="lead">{w.gifts}</p></Reveal>

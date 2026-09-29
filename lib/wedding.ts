@@ -56,12 +56,33 @@ export const wedding = {
 
   dressCode: {
     title: "Forest Formal",
-    text: "Our palette is inspired by the forest: earthy greens and rich browns. Kindly avoid pure white — that's reserved for the bride.",
+    text: "We invite everyone to dress in earthy, elegant tones of greens and browns.",
     colors: [
       { hex: "#80856D", name: "Oil Green" },
       { hex: "#5A4A42", name: "Hot Fudge" },
       { hex: "#EDE3D2", name: "Antique White" },
     ],
+    entourage: {
+      label: "Overall Entourage, Principal & Secondary Sponsors",
+      image: "/dresscode/entourage.webp",
+      shades: ["#3F4A2A", "#5B6B3A", "#7A8450", "#9AA57A", "#4E5A36"],
+      rules: [
+        { who: "Girls & Women", text: "Long dresses in shades of forest green: moss, olive, sage, deep green, or any earthy, foresty shade of green." },
+        { who: "Men", text: "Formal attire in brown: a brown coat and tie, or a brown long-sleeve polo paired with formal trousers." },
+      ],
+    },
+    guests: {
+      label: "Guests",
+      image: "/dresscode/guests.webp",
+      shades: ["#3B2A22", "#5A3D2E", "#7B5238", "#A0714F", "#C9A27E"],
+      attire: "Semi-Formal · Shades of Brown",
+      text: "Any shade of brown, from deep chocolate and espresso to warm caramel, tan and other earthy brown tones.",
+    },
+    note: [
+      "We'd love for everyone to look and feel their best, but we also want to keep things practical and comfortable.",
+      "If you're planning to buy something new for the occasion, we hope you'll choose a piece you can wear and enjoy again long after our celebration. There's no need for anything grand or extravagant.",
+    ],
+    noteLine: "Simple yet elegant. Comfortable yet polished. Just bring your best look and celebrate with us.",
   },
 
   gifts:
