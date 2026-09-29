@@ -1705,3 +1705,16 @@ section#gallery { padding-top: 170px; padding-bottom: 170px; }
   .et-sponsors i { font-size: 14px; }
   .et-girls { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 6px; }
 }
+/* ═══ Entourage tiles: larger on laptops/desktops only ═══ */
+@media (min-width: 900px) {
+  #entourage .wrap { max-width: 1000px; }
+  .entg { gap: 16px; }
+  .et { padding: 30px 22px 28px; }
+  .et-role { font-size: 14px; letter-spacing: 0.26em; margin-bottom: 14px; }
+  .et-name { font-size: 20px; line-height: 1.4; }
+  .et-amp { font-size: 21px; }
+  .et-sponsors { gap: 10px 36px; }
+  .et-sponsors li, .et-girls li { font-size: 19px; }
+  .et-sponsors i { font-size: 21px; margin: 0 7px; }
+  .et-girls { gap: 6px 34px; }
+}
