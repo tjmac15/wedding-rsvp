@@ -41,7 +41,7 @@ export const wedding = {
 
   // Order of the day — edit times to match your program
   schedule: [
-    { time: "3:00 PM", title: "Guest Arrival", note: "Welcome drinks in the garden" },
+    { time: "3:30 PM", title: "Guest Arrival", note: "Welcome drinks in the garden" },
     { time: "4:00 PM", title: "Ceremony", note: "Please be seated by 4:00 PM" },
     { time: "5:30 PM", title: "Photo taking", note: "Golden hour by the lake" },
     { time: "6:00 PM", title: "Reception", note: "Dinner, toasts & dancing" },

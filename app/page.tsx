@@ -88,7 +88,7 @@ export default function Home() {
               <span className="hero-line l3">{w.bride}</span>
             </h1>
             <p className="inv-small hero-line l4">
-              Request the honour of your presence<br />at their wedding celebration
+              Request the honour of your presence<br />at their intimate wedding celebration
             </p>
 
             <div className="inv-date hero-line l4">
