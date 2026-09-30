@@ -14,7 +14,7 @@ export const wedding = {
   
 
   // Wedding day — ISO with Philippine time offset (+08:00)
-  dateISO: "2026-12-08T16:30:00+08:00",
+  dateISO: "2026-12-08T15:30:00+08:00",
   endISO: "2026-12-08T23:00:00+08:00",
   dateLabel: "Tuesday, December 8, 2026",
   dateShort: "12 · 08 · 2026",
@@ -65,7 +65,7 @@ export const wedding = {
     entourage: {
       label: "Overall Entourage, Principal & Secondary Sponsors",
       image: "/dresscode/entourage.webp",
-      shades: ["#3F4A2A", "#5B6B3A", "#7A8450", "#9AA57A", "#4E5A36"],
+      // shades: ["#3F4A2A", "#5B6B3A", "#7A8450", "#9AA57A", "#4E5A36"],
       rules: [
         { who: "Women", text: "Long dresses in shades of forest green: moss, olive, sage, deep green, or any earthy, foresty shade of green." },
         { who: "Men", text: "Formal attire in brown: a brown coat and tie, or a brown long-sleeve polo paired with formal trousers." },
@@ -74,7 +74,7 @@ export const wedding = {
     guests: {
       label: "Guests",
       image: "/dresscode/guests.webp",
-      shades: ["#3B2A22", "#5A3D2E", "#7B5238", "#A0714F", "#C9A27E"],
+      // shades: ["#3B2A22", "#5A3D2E", "#7B5238", "#A0714F", "#C9A27E"],
       attire: "Semi-Formal · Shades of Brown",
       text: "Any shade of brown, from deep chocolate and espresso to warm caramel, tan and other earthy brown tones.",
     },
