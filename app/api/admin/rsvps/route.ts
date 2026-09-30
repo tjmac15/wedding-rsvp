@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { timingSafeEqual } from "crypto";
 import { db, RSVP_COLLECTION } from "@/lib/firebaseAdmin";
+import { GUESTS } from "@/lib/guests";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -42,5 +43,5 @@ export async function GET(req: Request) {
     };
   });
 
-  return NextResponse.json({ rsvps });
+  return NextResponse.json({ rsvps, invited: GUESTS });
 }

@@ -2035,3 +2035,19 @@ section#gallery { padding-top: 170px; padding-bottom: 170px; }
 }
    /* ═══ Footer names in white ═══ */
    footer .foot-names { color: #ffffff !important; }
+  
+ /* ═══ RSVP: find-your-name ═══ */
+.rsvp-intro { text-align: center; font-size: 17px; font-weight: 600; color: #121109; margin-bottom: 22px; line-height: 1.5; }
+.rsvp-intro strong { color: #474b33; }
+.guest-find { position: relative; }
+.guest-find input.is-picked { border-color: #474b33; background: rgba(163,177,138,0.14); font-weight: 600; padding-right: 40px; }
+.guest-check { position: absolute; right: 14px; top: 38px; color: #474b33; font-weight: 700; font-size: 18px; }
+.guest-list {
+  position: absolute; left: 0; right: 0; top: calc(100% - 4px); z-index: 20; list-style: none; margin: 0; padding: 6px;
+  background: #fbfbf7; border: 1px solid rgba(71,75,51,0.35); border-radius: 4px; box-shadow: 0 16px 30px -18px rgba(4,3,1,0.5);
+}
+.guest-list li { padding: 11px 12px; border-radius: 3px; cursor: pointer; font-size: 17px; font-weight: 600; color: #121109; }
+.guest-list li:hover { background: rgba(163,177,138,0.2); }
+.guest-hint { margin-top: 8px; font-size: 14.5px; font-style: italic; color: #4a4838; }
+.rsvp-section { position: relative; z-index: 6 !important; }
+.guest-find { z-index: 10; }

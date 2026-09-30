@@ -20,6 +20,7 @@ const csvCell = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
 export default function Admin() {
   const [pw, setPw] = useState("");
   const [rows, setRows] = useState<Rsvp[] | null>(null);
+  const [invited, setInvited] = useState<string[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [q, setQ] = useState("");
@@ -34,6 +35,7 @@ export default function Admin() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to load");
       setRows(data.rsvps);
+      setInvited(data.invited ?? []);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load");
     } finally {
@@ -48,9 +50,10 @@ export default function Admin() {
       responses: r.length,
       yes: yes.length,
       no: r.length - yes.length,
+      pending: Math.max(0, invited.length - r.length),
       seats: yes.reduce((s, x) => s + (x.guests || 0), 0),
     };
-  }, [rows]);
+  }, [rows, invited]);
 
   const visible = useMemo(() => {
     const term = q.toLowerCase();
@@ -100,6 +103,7 @@ export default function Admin() {
         <div className="stat"><b>{stats.yes}</b><span>Attending</span></div>
         <div className="stat"><b>{stats.no}</b><span>Declined</span></div>
         <div className="stat"><b>{stats.responses}</b><span>Total responses</span></div>
+        <div className="stat"><b>{stats.pending}</b><span>Not yet replied (of {invited.length})</span></div>
       </div>
 
       <div className="toolbar">
@@ -142,6 +146,17 @@ export default function Admin() {
           </tbody>
         </table>
       </div>
+
+      {invited.length > 0 && (() => {
+        const answered = new Set((rows ?? []).map((r) => r.name.toLowerCase()));
+        const pending = invited.filter((n) => !answered.has(n.toLowerCase()));
+        return pending.length ? (
+          <details style={{ marginTop: 22 }}>
+            <summary style={{ cursor: "pointer", fontWeight: 700 }}>Not yet replied ({pending.length})</summary>
+            <p style={{ marginTop: 10, lineHeight: 1.9 }}>{pending.join(" · ")}</p>
+          </details>
+        ) : null;
+      })()}
     </main>
   );
 }
