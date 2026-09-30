@@ -35,7 +35,7 @@ export const wedding = {
     tips: [
       "Sta. Elena is a gated estate — tell the guard you're a wedding guest at Rico's Cafe.",
       "Parking is available on site.",
-      "Allow about 1–1.5 hours from Metro Manila via SLEX (Sta. Rosa exit).",
+      "Allow about 1–1.5 hours from Metro Manila via SLEX (Cabuyao exit).",
     ],
   },
 
