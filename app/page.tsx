@@ -290,31 +290,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── GALLERY ───────────────────────────── */}
-      <section className="block" id="gallery">
-        <div className="wrap wide">
-          <Reveal><Title eyebrow="Memories we share" title="Our Gallery" /></Reveal>
-          <Reveal><Gallery photos={photos.gallery} /></Reveal>
-        </div>
-      </section>
-
-      <Marquee dark items={["With love", "Save the date", "Rico's Cafe", "12 · 08 · 2026"]} />
-
       {/* ── ATTIRE / GIFTS ────────────────────── */}
       <section className="block alt" id="attire">
         <div className="narrow center">
           <Reveal><Title eyebrow={w.dressCode.title} title="Dress Code" /></Reveal>
           <Reveal><p className="lead">{w.dressCode.text}</p></Reveal>
-          <div className="swatches">
-            {w.dressCode.colors.map((c, i) => (
-              <Reveal key={c.hex} from="zoom" delay={i * 90}>
-                <div className="swatch">
-                  <span style={{ background: c.hex }} />
-                  <em>{c.name}</em>
-                </div>
-              </Reveal>
-            ))}
-          </div>
 
           <div className="dc-grid">
             {[
@@ -328,9 +308,6 @@ export default function Home() {
                   <img src={d.image} alt={`${d.label} outfit inspiration`} loading="lazy" />
                   <span>View lookbook</span>
                 </a>
-                <div className="dc-dots">
-                  {d.shades.map((s) => <i key={s} style={{ background: s }} />)}
-                </div>
                 {"rules" in d
                   ? (d as typeof w.dressCode.entourage).rules.map((r) => (
                       <div key={r.who} className="dc-rule">
@@ -357,17 +334,22 @@ export default function Home() {
           </Reveal>
 
           <div style={{ marginTop: 96 }}>
-            <Reveal><Title eyebrow="A gentle note" title="Gifts" /></Reveal>
+            <Reveal><Title eyebrow="Be a blessing" title="Gifts" /></Reveal>
             <Reveal><p className="lead">{w.gifts}</p></Reveal>
           </div>
 
-          <Reveal>
-            <ul className="notes">
-              {w.notes.map((n) => <li key={n}>{n}</li>)}
-            </ul>
-          </Reveal>
         </div>
       </section>
+
+      {/* ── GALLERY ───────────────────────────── */}
+      <section className="block" id="gallery">
+        <div className="wrap wide">
+          <Reveal><Title eyebrow="Memories we share" title="Our Gallery" /></Reveal>
+          <Reveal><Gallery photos={photos.gallery} /></Reveal>
+        </div>
+      </section>
+
+      <Marquee dark items={["With love", "Save the date", "Rico's Cafe", "12 · 08 · 2026"]} />
 
       {/* ── RSVP ──────────────────────────────── */}
       <section className="block rsvp-section" id="rsvp">

@@ -2033,3 +2033,5 @@ section#gallery { padding-top: 170px; padding-bottom: 170px; }
   font-size: 16px; font-weight: 700; font-style: italic;
   color: #474b33; margin-top: 10px;
 }
+   /* ═══ Footer names in white ═══ */
+   footer .foot-names { color: #ffffff !important; }
