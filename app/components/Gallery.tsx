@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { createPortal } from "react-dom";
 
 /** Masonry gallery with a full-screen lightbox (arrows, Esc, swipe). */
 export default function Gallery({ photos }: { photos: string[] }) {
@@ -78,7 +79,7 @@ export default function Gallery({ photos }: { photos: string[] }) {
         </p>
       )}
 
-      {idx !== null && (
+      {idx !== null && createPortal(
         <div
           className="lightbox"
           onClick={close}
@@ -99,7 +100,8 @@ export default function Gallery({ photos }: { photos: string[] }) {
           <button className="lb-btn lb-next" onClick={(e) => { e.stopPropagation(); step(1); }} aria-label="Next">›</button>
           <button className="lb-btn lb-close" onClick={close} aria-label="Close">×</button>
           <span className="lb-count">{idx + 1} / {photos.length}</span>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

@@ -82,7 +82,7 @@ export const GUESTS: string[] = [
   "Ia Shekina Mojado",
   "Bianca Marie Apacible",
   "Gabrielle Lladoc",
-  "Jefferson Mercado",
+  "Jeffson Mercado",
   "Kevin Manuel",
   "John Eric Sorita",
   "Jerica Sorita",

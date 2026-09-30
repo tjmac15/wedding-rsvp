@@ -2051,3 +2051,8 @@ section#gallery { padding-top: 170px; padding-bottom: 170px; }
 .guest-hint { margin-top: 8px; font-size: 14.5px; font-style: italic; color: #4a4838; }
 .rsvp-section { position: relative; z-index: 6 !important; }
 .guest-find { z-index: 10; }
+
+/* ═══ Photo viewer: always full-screen, above everything ═══ */
+.lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(12, 13, 9, 0.94); display: flex; align-items: center; justify-content: center; }
+.lightbox img { position: relative; z-index: 1; object-fit: contain; border-radius: 4px; }
+.lightbox .lb-btn { z-index: 2; }
