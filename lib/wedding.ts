@@ -109,13 +109,13 @@ export const wedding = {
       ["Mr. Leonardo Bathan", "Mrs. Naneth Manuevo"],
     ],
     honor: [
-      { role: "Maid of Honor", names: ["Ms. Shekina Mojado"] },
+      { role: "Maid of Honor", names: ["Ms. Ia Shekina Mojado"] },
       { role: "Best Man", names: ["Mr. John Eric Sorita"] },
     ],
     secondary: [
       { role: "Candles", names: ["Mr. JR Cabinian", "Ms. Jonelle Rendon"] },
       { role: "Veil", names: ["Mr. VJ Cabinian", "Ms. Vianjen Rendon"] },
-      { role: "Cord", names: ["Mr. Christian Rendon", "Ms. Jazzen Macaraeg"] },
+      { role: "Cord", names: ["Mr. Christian Rendon", "Ms. Princess Nicole Ferrer"] },
     ],
     bearers: [
       { role: "Bible Bearer", names: ["Vander Louise Macaraeg"] },
