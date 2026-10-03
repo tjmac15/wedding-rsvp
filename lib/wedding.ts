@@ -107,6 +107,7 @@ export const wedding = {
       ["Mr. Joseph Macaraeg", "Mrs. Anna Macaraeg"],
       ["Mr. Alvin Fidel", "Mrs. Rose Manguerra"],
       ["Mr. Leonardo Bathan", "Mrs. Naneth Manuevo"],
+      ["Mr. Ron Mandigma", "Mrs. Nancy Mandigma"],
     ],
     honor: [
       { role: "Maid of Honor", names: ["Ms. Ia Shekina Mojado"] },
