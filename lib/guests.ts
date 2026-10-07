@@ -77,7 +77,7 @@ export const GUESTS: string[] = [
   "Arlene Moulic",
   "Arnel Ferrer",
   "Alvin Fidel",
-  "Leo Sunep",
+  "Leo Penus",
   "Princess Nicole Ferrer",
   "Ia Shekina Mojado",
   "Bianca Marie Apacible",

@@ -103,7 +103,7 @@ export const wedding = {
       ["Mr. Arnel Ferrer", "Mrs. Arlene Moulic"],
       ["Mr. Aaron Ferrer", "Mrs. Marilou Juarez"],
       ["Mr. Teofilo Macaraeg Jr.", "Mrs. Jenny Baron"],
-      ["Mr. Leo Sunep", "Mrs. Anette Macaraeg"],
+      ["Mr. Leo Penus", "Mrs. Anette Macaraeg"],
       ["Mr. Joseph Macaraeg", "Mrs. Anna Macaraeg"],
       ["Mr. Alvin Fidel", "Mrs. Naneth Manuevo"],
       ["Mr. Leonardo Bathan", "Mrs. Loisa Luna"],
