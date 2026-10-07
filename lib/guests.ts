@@ -92,6 +92,7 @@ export const GUESTS: string[] = [
   "Cory Abad",
   "Miguel Abad",
   "Maverick Abad",
+  "Vergel Fidel",
 ];
 
 /** lower-case, no accents/punctuation, single spaces */

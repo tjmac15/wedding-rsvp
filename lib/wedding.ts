@@ -105,9 +105,10 @@ export const wedding = {
       ["Mr. Teofilo Macaraeg Jr.", "Mrs. Jenny Baron"],
       ["Mr. Leo Sunep", "Mrs. Anette Macaraeg"],
       ["Mr. Joseph Macaraeg", "Mrs. Anna Macaraeg"],
-      ["Mr. Alvin Fidel", "Mrs. Rose Manguerra"],
-      ["Mr. Leonardo Bathan", "Mrs. Naneth Manuevo"],
+      ["Mr. Alvin Fidel", "Mrs. Naneth Manuevo"],
+      ["Mr. Leonardo Bathan", "Mrs. Loisa Luna"],
       ["Mr. Ron Mandigma", "Mrs. Nancy Mandigma"],
+      ["Hon. Virgilio Fidel", "Mrs.  Rose Mangeurra"],
     ],
     honor: [
       { role: "Maid of Honor", names: ["Ms. Ia Shekina Mojado"] },
