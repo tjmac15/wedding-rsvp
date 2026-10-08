@@ -106,7 +106,7 @@ export const wedding = {
       ["Mr. Leo Penus", "Mrs. Anette Macaraeg"],
       ["Mr. Joseph Macaraeg", "Mrs. Anna Macaraeg"],
       ["Mr. Alvin Fidel", "Mrs. Naneth Manuevo"],
-      ["Mr. Leonardo Bathan", "Mrs. Loisa Luna"],
+      ["Mr. Leonardo Bathan", "Mrs. Ma. Eloisa Luna"],
       ["Mr. Ron Mandigma", "Mrs. Nancy Mandigma"],
       ["Hon. Virgilio Fidel", "Mrs.  Rose Mangeurra"],
     ],
